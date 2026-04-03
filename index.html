@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aadhya Gupta — Textile Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --warm-white: #FAF8F4;
+      --terracotta: #C2604A;
+      --terracotta-light: #D4806E;
+      --indigo: #2C3A6E;
+      --indigo-deep: #1A2340;
+      --ochre: #D4A843;
+      --ochre-light: #E8C76A;
+      --sage: #7A9278;
+      --charcoal: #2A2A2A;
+      --warm-gray: #8A8378;
+      --light-gray: #D6D0C6;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ===== GRAIN OVERLAY ===== */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      background: rgba(245, 240, 232, 0.8);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: all 0.4s ease;
+    }
+
+    nav .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--indigo-deep);
+      letter-spacing: -0.02em;
+    }
+
+    nav .logo span {
+      color: var(--terracotta);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--warm-gray);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    nav ul a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--terracotta);
+      transition: width 0.3s ease;
+    }
+
+    nav ul a:hover { color: var(--terracotta); }
+    nav ul a:hover::after { width: 100%; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 5rem 5rem;
+      position: relative;
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--indigo);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      animation: slideIn 0.8s ease 0.2s both;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--ochre);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      color: var(--indigo-deep);
+      margin-bottom: 1.5rem;
+      animation: slideIn 0.8s ease 0.4s both;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--terracotta);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--warm-gray);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      animation: slideIn 0.8s ease 0.6s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      animation: slideIn 0.8s ease 0.8s both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 3rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.35s ease;
+    }
+
+    .btn-primary {
+      background: var(--terracotta);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--indigo);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(44, 58, 110, 0.25);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--charcoal);
+      border: 1.5px solid var(--light-gray);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--terracotta);
+      color: var(--terracotta);
+      transform: translateY(-2px);
+    }
+
+    .hero-right {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 1.2s ease 0.5s both;
+    }
+
+    .hero-pattern {
+      width: 420px;
+      height: 520px;
+      border-radius: 1rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--indigo) 0%, var(--indigo-deep) 50%, var(--terracotta) 100%);
+      box-shadow: 0 30px 80px rgba(26, 35, 64, 0.2);
+    }
+
+    .hero-pattern::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 18px,
+          rgba(255,255,255,0.06) 18px,
+          rgba(255,255,255,0.06) 20px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 18px,
+          rgba(255,255,255,0.04) 18px,
+          rgba(255,255,255,0.04) 20px
+        );
+    }
+
+    .hero-pattern::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(212, 168, 67, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(194, 96, 74, 0.4) 0%, transparent 40%);
+    }
+
+    .pattern-text {
+      position: absolute;
+      bottom: 2rem; left: 2rem;
+      color: white;
+      z-index: 2;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      opacity: 0.8;
+      line-height: 1.3;
+    }
+
+    .hero-float {
+      position: absolute;
+      background: var(--warm-white);
+      padding: 1rem 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      font-size: 0.8rem;
+      font-weight: 500;
+      z-index: 3;
+    }
+
+    .hero-float-1 {
+      top: 5%; right: -10%;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .hero-float-2 {
+      bottom: 10%; left: -8%;
+      animation: float 4s ease-in-out 1s infinite;
+    }
+
+    .hero-float .number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--terracotta);
+      display: block;
+    }
+
+    /* ===== SECTION STYLING ===== */
+    section {
+      padding: 6rem 5rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 30px; height: 1.5px;
+      background: var(--terracotta);
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--indigo-deep);
+      line-height: 1.15;
+      margin-bottom: 3rem;
+    }
+
+    .section-title em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--terracotta);
+      font-weight: 400;
+    }
+
+    /* ===== ABOUT ===== */
+    #about {
+      background: var(--warm-white);
+      border-top: 1px solid rgba(0,0,0,0.04);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--warm-gray);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .about-text p:first-of-type::first-letter {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.5rem;
+      float: left;
+      line-height: 1;
+      margin-right: 0.5rem;
+      color: var(--terracotta);
+    }
+
+    .education-card {
+      background: var(--cream);
+      border-radius: 1rem;
+      padding: 2rem;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .education-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--indigo-deep);
+      margin-bottom: 1.5rem;
+    }
+
+    .edu-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .edu-item:last-child { border-bottom: none; }
+
+    .edu-year {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--terracotta);
+      letter-spacing: 0.05em;
+      min-width: 70px;
+      padding-top: 0.15rem;
+    }
+
+    .edu-details h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-details p {
+      font-size: 0.85rem;
+      color: var(--warm-gray);
+      font-weight: 300;
+    }
+
+    /* ===== EXPERIENCE ===== */
+    .experience-items {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .exp-card {
+      background: var(--warm-white);
+      border-radius: 1rem;
+      padding: 2.5rem;
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--light-gray);
+      transition: background 0.4s ease;
+    }
+
+    .exp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    }
+
+    .exp-card:hover::before {
+      background: linear-gradient(180deg, var(--terracotta), var(--ochre));
+    }
+
+    .exp-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .exp-card:nth-child(1) .exp-icon { background: rgba(194, 96, 74, 0.1); }
+    .exp-card:nth-child(2) .exp-icon { background: rgba(44, 58, 110, 0.1); }
+    .exp-card:nth-child(3) .exp-icon { background: rgba(122, 146, 120, 0.1); }
+    .exp-card:nth-child(4) .exp-icon { background: rgba(212, 168, 67, 0.1); }
+
+    .exp-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--indigo-deep);
+      margin-bottom: 0.75rem;
+    }
+
+    .exp-card p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--warm-gray);
+      font-weight: 300;
+    }
+
+    /* ===== SKILLS ===== */
+    #skills {
+      background: var(--indigo-deep);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #skills::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(194, 96, 74, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(212, 168, 67, 0.1) 0%, transparent 40%);
+    }
+
+    #skills .section-label { color: var(--ochre-light); }
+    #skills .section-label::before { background: var(--ochre-light); }
+    #skills .section-title { color: white; }
+    #skills .section-title em { color: var(--ochre-light); }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .skill-tag {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.75rem 1.5rem;
+      border-radius: 3rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      transition: all 0.35s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    .skill-tag:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: var(--ochre-light);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      background: var(--warm-white);
+      border-top: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-left p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--warm-gray);
+      font-weight: 300;
+      max-width: 420px;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--cream);
+      border-radius: 1rem;
+      text-decoration: none;
+      color: var(--charcoal);
+      transition: all 0.35s ease;
+      border: 1px solid transparent;
+    }
+
+    .contact-item:hover {
+      background: white;
+      border-color: rgba(0,0,0,0.06);
+      transform: translateX(6px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    }
+
+    .contact-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--warm-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-item:hover .contact-icon { background: rgba(194,96,74,0.1); }
+
+    .contact-item .label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--warm-gray);
+      font-weight: 500;
+      margin-bottom: 0.15rem;
+    }
+
+    .contact-item .value {
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 3rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--warm-gray);
+    }
+
+    footer .back-top {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    footer .back-top:hover {
+      background: var(--indigo);
+      transform: translateY(-3px);
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { gap: 1.2rem; }
+      nav ul a { font-size: 0.75rem; }
+
+      section { padding: 4rem 1.5rem; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 7rem 1.5rem 3rem;
+        min-height: auto;
+      }
+
+      .hero-right { order: -1; margin-bottom: 2rem; }
+      .hero-pattern { width: 100%; height: 300px; }
+      .hero-float { display: none; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .experience-items { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+      footer { padding: 2rem 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav ul { display: none; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero-buttons { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="top">
+    <div class="logo">Aadhya<span>.</span></div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">NIFT &middot; Class of 2027</div>
+      <h1>Aadhya<br>Gupta<br><em>Textile Designer</em></h1>
+      <p class="hero-description">
+        Weaving together tradition and innovation — I design with intention, grounded in Indian craft heritage and driven by a fearless approach to color, texture, and storytelling.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">
+          Get in Touch
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#experience" class="btn btn-outline">View My Work</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-pattern">
+        <span class="pattern-text">Color, craft<br>& intention.</span>
+      </div>
+      <div class="hero-float hero-float-1">
+        <span class="number">4+</span>
+        Creative Disciplines
+      </div>
+      <div class="hero-float hero-float-2">
+        <span class="number">B.Des</span>
+        NIFT '23–'27
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Where craft meets <em>creative vision</em></h2>
+        <p>Currently pursuing a Bachelor's in Textile Design at the National Institute of Fashion Technology, I bring an instinctive understanding of color, material, and composition to everything I create. My design philosophy is rooted in the belief that the most compelling work lives at the intersection of heritage craft and contemporary expression.</p>
+        <p>Beyond textiles, I've honed my eye across graphic design, photography, videography, and digital content creation — building a versatile creative toolkit that lets me approach every project with fresh perspective and multidisciplinary fluency.</p>
+      </div>
+      <div class="education-card reveal">
+        <h3>Education</h3>
+        <div class="edu-item">
+          <span class="edu-year">2023–27</span>
+          <div class="edu-details">
+            <h4>B.Des — Textile Design</h4>
+            <p>National Institute of Fashion Technology (NIFT)</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <span class="edu-year">2023</span>
+          <div class="edu-details">
+            <h4>Senior Secondary (12th — Commerce)</h4>
+            <p>Gopal Sah +2, Bihar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label reveal">Experience</div>
+    <h2 class="section-title reveal">From craft villages to <em>creative studios</em></h2>
+    <div class="experience-items">
+      <div class="exp-card reveal">
+        <div class="exp-icon">🧵</div>
+        <h3>Traditional Craft Research — Jaipur</h3>
+        <p>Conducted immersive field research into heritage dyeing techniques across Rajasthan's artisan communities, documenting processes passed down through generations and exploring their potential in contemporary textile applications.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-icon">✦</div>
+        <h3>Graphic Designer — Kairosity</h3>
+        <p>Shaped the visual identity of an emerging startup, delivering brand assets, marketing collateral, and digital graphics that translated the company's vision into a cohesive and compelling design language.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-icon">📸</div>
+        <h3>Freelance Creative — Photography & Content</h3>
+        <p>Independently produced photoshoot direction, video editing, and creative content for a diverse range of clients — developing a sharp editorial eye and the ability to execute end-to-end visual storytelling under deadline.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-icon">🎨</div>
+        <h3>Surface Design & Print Development</h3>
+        <p>Explored the full spectrum of surface embellishment — from hand-applied techniques to digital print workflows — creating textile samples that balance aesthetic experimentation with commercial viability.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label reveal">Toolkit</div>
+    <h2 class="section-title reveal">The tools behind <em>the craft</em></h2>
+    <div class="skills-grid reveal">
+      <span class="skill-tag">Adobe Illustrator</span>
+      <span class="skill-tag">Adobe Photoshop</span>
+      <span class="skill-tag">Adobe InDesign</span>
+      <span class="skill-tag">Adobe Lightroom</span>
+      <span class="skill-tag">Adobe Creative Suite</span>
+      <span class="skill-tag">Procreate</span>
+      <span class="skill-tag">Canva</span>
+      <span class="skill-tag">Surface Embellishment</span>
+      <span class="skill-tag">Print Development</span>
+      <span class="skill-tag">Photography</span>
+      <span class="skill-tag">Video Editing</span>
+      <span class="skill-tag">Textile Research</span>
+      <span class="skill-tag">Color Theory</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <div class="section-label">Let's Connect</div>
+        <h2 class="section-title">Have a project <em>in mind?</em></h2>
+        <p>Whether it's a design collaboration, an internship opportunity, or just a conversation about craft and color — I'd love to hear from you.</p>
+      </div>
+      <div class="contact-items reveal">
+        <a href="mailto:aadhyagupta185@gmail.com" class="contact-item">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--terracotta)" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+          </div>
+          <div>
+            <div class="label">Email</div>
+            <div class="value">aadhyagupta185@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+919142360119" class="contact-item">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--terracotta)" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="label">Phone</div>
+            <div class="value">+91 91423 60119</div>
+          </div>
+        </a>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--terracotta)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="label">Location</div>
+            <div class="value">NIFT Campus, Kangra, Himachal Pradesh</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Aadhya Gupta. Designed with intention.</p>
+    <a href="#top" class="back-top" aria-label="Back to top">↑</a>
+  </footer>
+
+  <!-- REVEAL ON SCROLL -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
