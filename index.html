@@ -1005,6 +1005,9 @@
      peels in one layer at a time, like paper being laid down on a table.
      Once the hero finishes, the About slide un-blurs from a glassy state
      so the transition between the two feels like a slow pull-focus. */
+  /* We animate via the individual `scale` property (not `transform: scale()`),
+     so elements that use `transform: translateX(-50%)` for centering keep
+     their centering intact throughout the animation. */
   .hero-cover .bg-white,
   .hero-cover .portrait-frame,
   .hero-cover .title .port,
@@ -1015,14 +1018,14 @@
   .hero-cover .year {
     opacity: 0;
     filter: blur(18px);
-    transform: scale(1.035);
-    will-change: opacity, filter, transform;
+    scale: 1.035;
+    will-change: opacity, filter, scale;
   }
 
   @keyframes heroReveal {
-    0%   { opacity: 0; filter: blur(18px); transform: scale(1.035); }
+    0%   { opacity: 0; filter: blur(18px); scale: 1.035; }
     60%  { opacity: 1; }
-    100% { opacity: 1; filter: blur(0);    transform: scale(1); }
+    100% { opacity: 1; filter: blur(0);    scale: 1; }
   }
 
   /* Stagger: paper panel → portrait → PORT/FOLIO → names → meta.
@@ -1042,16 +1045,16 @@
   .slide-about {
     filter: blur(14px);
     opacity: 0.55;
-    transform: scale(1.01);
+    scale: 1.01;
     transition:
-      filter    1.25s cubic-bezier(.22,.8,.28,1) 2.35s,
-      opacity   1.25s cubic-bezier(.22,.8,.28,1) 2.35s,
-      transform 1.25s cubic-bezier(.22,.8,.28,1) 2.35s;
+      filter  1.25s cubic-bezier(.22,.8,.28,1) 2.35s,
+      opacity 1.25s cubic-bezier(.22,.8,.28,1) 2.35s,
+      scale   1.25s cubic-bezier(.22,.8,.28,1) 2.35s;
   }
   body.loaded .slide-about {
     filter: blur(0);
     opacity: 1;
-    transform: scale(1);
+    scale: 1;
   }
 
   /* Brief pre-load veil — prevents a flash of unstyled hero on slow connections.
@@ -1077,9 +1080,9 @@
     .hero-cover .name-last,
     .hero-cover .subtitle,
     .hero-cover .year {
-      opacity: 1; filter: none; transform: none; animation: none !important;
+      opacity: 1; filter: none; scale: 1; animation: none !important;
     }
-    .slide-about { filter: none; opacity: 1; transform: none; transition: none; }
+    .slide-about { filter: none; opacity: 1; scale: 1; transition: none; }
     body::before { display: none; }
   }
 </style>
