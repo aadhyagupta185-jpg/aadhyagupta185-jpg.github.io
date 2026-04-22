@@ -123,25 +123,35 @@
     background: var(--paper);
   }
 
-  /* PORTFOLIO — center-x 2791.5/5355 = 52.13%, font 478.5/5355 = 8.94vw,
-     letter-spacing 143.54/478.467 = 0.30em */
+  /* PORTFOLIO — we split the word at the 50% color boundary so the
+     character seam lines up exactly with the background split. PORT's
+     right edge is pinned to 50% (ends just before the split, rendered
+     in paper-color on maroon), and FOLIO's left edge is pinned to 50%
+     (starts just after the split, rendered in maroon on paper). This
+     prevents any single letter from straddling the color boundary
+     and becoming invisible. */
   .hero-cover .title {
     position: absolute;
     top: 0;
-    left: 52.13%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    height: auto;
     margin: 0;
-    white-space: nowrap;
     font-family: 'Spectral SC', 'Spectral', serif;
     font-weight: 600;
     font-size: 8.94vw;
     line-height: 1;
     letter-spacing: 0.30em;
   }
-  /* PORT sits on the paper half — match paper so it reads as negative-space,
-     mirroring the original white-on-white inversion trick but on paper now. */
-  .hero-cover .title .port  { color: var(--paper); }
-  .hero-cover .title .folio { color: var(--maroon); }
+  .hero-cover .title .port,
+  .hero-cover .title .folio {
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .hero-cover .title .port  { right: 50%; color: var(--paper); }
+  .hero-cover .title .folio { left:  50%; color: var(--maroon); }
 
   /* Textile Design — center-x 1116.04/5355 = 20.84%, top 566/2154 = 26.28%,
      font 96.3/5355 = 1.80vw */
@@ -427,6 +437,8 @@
       aspect-ratio: auto;
       height: auto;
       padding: 40px 22px 50px;
+      display: flex;
+      flex-direction: column;
     }
     .slide-about .portrait,
     .slide-about .heading,
@@ -440,6 +452,25 @@
       margin: 0 0 14px;
       display: block;
     }
+    /* Reorder so each heading sits directly above its content block. DOM order
+       was optimised for absolute-positioned desktop layout; on mobile we use
+       flexbox `order` to interleave them into a readable top-to-bottom flow. */
+    .slide-about .portrait              { order: 1;  }
+    .slide-about .heading--about-me     { order: 2;  }
+    .slide-about .block--bio            { order: 3;  }
+    .slide-about .heading--software     { order: 4;  }
+    .slide-about .block--software       { order: 5;  }
+    .slide-about .heading--creative     { order: 6;  }
+    .slide-about .block--creative       { order: 7;  }
+    .slide-about .heading--languages    { order: 8;  }
+    .slide-about .block--languages-list { order: 9;  }
+    .slide-about .heading--education    { order: 10; }
+    .slide-about .block--education      { order: 11; }
+    .slide-about .heading--work         { order: 12; }
+    .slide-about .block--job-1          { order: 13; }
+    .slide-about .block--job-2          { order: 14; }
+    .slide-about .block--job-3          { order: 15; }
+    .slide-about .block--contact        { order: 16; }
     .slide-about .heading {
       font-size: 22px;
       text-align: left;
