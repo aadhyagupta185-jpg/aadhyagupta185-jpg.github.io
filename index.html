@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aadhya Gupta &mdash; Textile Design Portfolio 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=League+Spartan:wght@200;300;400;500&family=Playfair+Display:wght@400;500;600;700&family=Spectral+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --wine: #6b1212;
+    --wine-dark: #4a0c0c;
+    --ink: #111111;
+    --paper: #fbfaf7;
+    --cream: #f3ede2;
+    --soft: #eadfd0;
+    --muted: #6b6560;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { background: var(--paper); } /* unified paper surface — hero + about halves now blend seamlessly into the rest of the page */
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ==== NAV ==== */
+  nav.top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    background: rgba(251, 250, 247, 0.55);
+    border-bottom: 1px solid rgba(107, 18, 18, 0.08);
+    box-shadow: 0 6px 30px -12px rgba(17, 17, 17, 0.12);
+    /* hidden by default — only slides down on scroll-up */
+    transform: translateY(-105%);
+    transition: transform 0.45s cubic-bezier(.22,.8,.28,1);
+    will-change: transform;
+  }
+  nav.top.show { transform: translateY(0); }
+  nav.top .inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 18px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav.top .brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    color: var(--wine);
+    text-transform: uppercase;
+  }
+  nav.top .brand span { color: var(--ink); }
+  nav.top ul {
+    list-style: none;
+    display: flex;
+    gap: 36px;
+  }
+  nav.top ul a {
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  nav.top ul a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--wine);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+  nav.top ul a:hover { color: var(--wine); }
+  nav.top ul a:hover::after { transform: scaleX(1); }
+
+  @media (max-width: 860px) {
+    nav.top ul { display: none; }
+  }
+
+  /* ==== HERO (cover semantically rebuilt from Figma frame 39:194)
+     Source frame: 5355 × 2154  →  aspect ratio 2.486 : 1
+     All values below are EXACT percentages relative to the 5355×2154 frame. */
+  .hero-cover {
+    --maroon: #660505;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5355 / 2154;
+    overflow: hidden;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 200;
+    background: var(--maroon);
+  }
+
+  /* Right-half panel — bg-paper at x:2678 → 50.0% to 100%.
+     Paper (not white) so the hero dissolves into the rest of the page. */
+  .hero-cover .bg-white {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    right: 0;
+    background: var(--paper);
+  }
+
+  /* PORTFOLIO — center-x 2791.5/5355 = 52.13%, font 478.5/5355 = 8.94vw,
+     letter-spacing 143.54/478.467 = 0.30em */
+  .hero-cover .title {
+    position: absolute;
+    top: 0;
+    left: 52.13%;
+    transform: translateX(-50%);
+    margin: 0;
+    white-space: nowrap;
+    font-family: 'Spectral SC', 'Spectral', serif;
+    font-weight: 600;
+    font-size: 8.94vw;
+    line-height: 1;
+    letter-spacing: 0.30em;
+  }
+  /* PORT sits on the paper half — match paper so it reads as negative-space,
+     mirroring the original white-on-white inversion trick but on paper now. */
+  .hero-cover .title .port  { color: var(--paper); }
+  .hero-cover .title .folio { color: var(--maroon); }
+
+  /* Textile Design — center-x 1116.04/5355 = 20.84%, top 566/2154 = 26.28%,
+     font 96.3/5355 = 1.80vw */
+  .hero-cover .subtitle {
+    position: absolute;
+    top: 26.28%;
+    left: 20.84%;
+    transform: translateX(-50%);
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.80vw;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  /* 2026 — center-x 4301.5/5355 = 80.33%, top 1978/2154 = 91.83%, font 1.80vw */
+  .hero-cover .year {
+    position: absolute;
+    top: 91.83%;
+    left: 80.33%;
+    transform: translateX(-50%);
+    margin: 0;
+    color: var(--maroon);
+    font-size: 1.80vw;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  /* Portrait — outer container left:2008/5355 = 37.50%, top:463/2154 = 21.49%,
+     w:1097.97/5355 = 20.50%, h:1725.42/2154 = 80.10% */
+  .hero-cover .portrait-frame {
+    position: absolute;
+    left: 37.50%;
+    top: 21.49%;
+    width: 20.50%;
+    height: 80.10%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .hero-cover .portrait-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    user-select: none;
+  }
+
+  /* Aadhya — center-x 1771.38/5355 = 33.08%, top 1077/2154 = 50.00%,
+     font 270.78/5355 = 5.06vw */
+  .hero-cover .name-first {
+    position: absolute;
+    top: 50.00%;
+    left: 33.08%;
+    transform: translateX(-50%);
+    margin: 0;
+    color: #ffffff;
+    font-size: 5.06vw;
+    font-weight: 200;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  /* Gupta — center-x 3385.31/5355 = 63.22%, top 1456/2154 = 67.59%,
+     font 270.78/5355 = 5.06vw */
+  .hero-cover .name-last {
+    position: absolute;
+    top: 67.59%;
+    left: 63.22%;
+    transform: translateX(-50%);
+    margin: 0;
+    color: var(--maroon);
+    font-size: 5.06vw;
+    font-weight: 200;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  /* Mobile: hold the layout, bump text scales for legibility */
+  @media (max-width: 600px) {
+    .hero-cover { aspect-ratio: 2.0 / 1; }
+    .hero-cover .title { font-size: 10.4vw; letter-spacing: 0.28em; }
+    .hero-cover .subtitle, .hero-cover .year { font-size: 2.4vw; }
+    .hero-cover .name-first, .hero-cover .name-last { font-size: 6vw; }
+  }
+
+  /* ==== SLIDE — About / Skills / Experience (Figma frame 39:205)
+     Source frame: 5356 × 2154  →  aspect ratio 2.4865 : 1
+     All percentages below are EXACT, computed as (figma_px / 5356 × 100) for X,
+     (figma_px / 2154 × 100) for Y. Font sizes converted to vw the same way. */
+  .slide-about {
+    --maroon: #660505;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5356 / 2154;
+    overflow: hidden;
+    background: var(--paper);
+    color: #000000;
+    font-family: 'League Spartan', sans-serif;
+    line-height: 1.2;
+  }
+  .slide-about * { box-sizing: border-box; }
+
+  /* Portrait — x:6/5356=0.112%, y:101/2154=4.690%, w:672.5/5356=12.556%, h:590/2154=27.391% */
+  .slide-about .portrait {
+    position: absolute;
+    left: 0.112%;
+    top: 4.690%;
+    width: 12.556%;
+    height: 27.391%;
+    pointer-events: none;
+  }
+  .slide-about .portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    user-select: none;
+  }
+
+  /* Section headings (Spartan Regular, 96px → 1.792vw, color #660505, centered) */
+  .slide-about .heading {
+    position: absolute;
+    margin: 0;
+    transform: translateX(-50%);
+    color: var(--maroon);
+    font-size: 1.792vw;
+    font-weight: 400;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .slide-about .heading--about-me  { top: 8.08%;  left: 21.051%; }   /* y:174,  cx:1127.5/5356 */
+  .slide-about .heading--work      { top: 7.19%;  left: 72.900%; }   /* y:155,  cx:3904.5/5356 */
+  .slide-about .heading--software  { top: 7.57%;  left: 47.657%; }   /* y:163,  cx:2552.5/5356 */
+  .slide-about .heading--creative  { top: 38.58%; left: 47.657%; }   /* y:831,  cx:2552.5/5356 */
+  .slide-about .heading--education { top: 52.74%; left: 17.317%; }   /* y:1136, cx:927.5/5356 */
+  .slide-about .heading--languages { top: 64.49%; left: 46.873%; font-size: 1.867vw; } /* y:1389, cx:2510.5/5356, 100px */
+
+  /* Shared body-text container */
+  .slide-about .block {
+    position: absolute;
+    font-size: 0.766vw;         /* 41.024/5356*100 */
+    font-weight: 400;
+    text-align: justify;
+    line-height: 1.25;
+    color: #000000;
+  }
+  .slide-about .block p { margin: 0; }
+
+  /* Bio block — center-y anchor (Tailwind -translate-y-1/2)
+     x:678/5356=12.661%, center-y 699/2154=32.451%, w:979/5356=18.279%, h:494/2154=22.934% */
+  .slide-about .block--bio {
+    left: 12.661%;
+    top: 32.451%;
+    width: 18.279%;
+    height: 22.934%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+  }
+
+  /* Software skills list — center-y. x:2268/5356=42.345%, cy:25.371%, w:7.823%, h:22.423% */
+  .slide-about .block--list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+  .slide-about .block--software {
+    left: 42.345%;
+    top: 25.371%;
+    width: 7.823%;
+    height: 22.423%;
+    transform: translateY(-50%);
+  }
+  /* Creative list — aligned with Software list (left:42.345%) so all three
+     skill/language columns line up under their centered headings */
+  .slide-about .block--creative {
+    left: 42.345%;
+    top: 53.273%;
+    width: 7.823%;
+    height: 22.423%;
+    transform: translateY(-50%);
+  }
+  /* Languages list — aligned with Software list for consistent left edge */
+  .slide-about .block--languages-list {
+    left: 42.345%;
+    top: 75.789%;
+    width: 11.034%;
+    height: 22.423%;
+    transform: translateY(-50%);
+  }
+
+  /* Education block — top-left. x:676/5356=12.622%, y:1301/2154=60.399%, w:22.853%, h:11.699% */
+  .slide-about .block--education {
+    left: 12.622%;
+    top: 60.399%;
+    width: 22.853%;
+    height: 11.699%;
+    text-align: left;
+  }
+  .slide-about .block--education strong { font-weight: 700; }
+
+  /* Contact block — center-y. x:713/5356=13.311%, cy:1864.5/2154=86.560%, w:18.372%, h:12.396% */
+  .slide-about .block--contact {
+    left: 13.311%;
+    top: 86.560%;
+    width: 18.372%;
+    height: 12.396%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+
+  /* Contact icons — 50×50 boxes anchored top-left, w:50/5356=0.934%, h:50/2154=2.321% */
+  .slide-about .icon {
+    position: absolute;
+    width: 0.934%;
+    height: 2.321%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+  }
+  /* Phone icon removed — email + links only.
+     Envelope raised slightly, globe tracks middle link (LinkedIn). */
+  .slide-about .icon--envelope { left: 11.930%; top: 82.800%; }   /* aligns with email line */
+  .slide-about .icon--globe    { left: 11.930%; top: 88.200%; }   /* aligns with LinkedIn line */
+
+  /* Contact links — inherit ink color, underline only on hover */
+  .slide-about .block--contact a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .slide-about .block--contact a:hover { border-bottom-color: currentColor; }
+
+  /* Work experience job blocks — top-left, w:1386/5356=25.878%, h:552/2154=25.627% */
+  .slide-about .block--job {
+    width: 25.878%;
+    height: 25.627%;
+    text-align: justify;
+  }
+  .slide-about .block--job-1 { left: 64.473%; top: 15.042%; }   /* x:3453, y:324  (Kairoisty) */
+  .slide-about .block--job-2 { left: 64.810%; top: 40.111%; }   /* x:3471, y:864  (Craft Researcher) */
+  .slide-about .block--job-3 { left: 64.810%; top: 71.774%; }   /* x:3471, y:1546 (Surface Embellishment) */
+
+  /* Job title — Spartan Bold 48px → 0.896vw */
+  .slide-about .job-title {
+    font-weight: 700;
+    font-size: 0.896vw;
+    margin: 0 0 0.05em 0;
+    text-align: left;
+    line-height: 1.2;
+  }
+  .slide-about .job-meta {
+    font-weight: 400;
+    font-size: 0.766vw;
+    margin: 0 0 0.35em 0;
+    text-align: left;
+    line-height: 1.2;
+  }
+  .slide-about .job-list {
+    list-style: disc outside;
+    margin: 0;
+    padding-left: 1.15em;
+  }
+  .slide-about .job-list li {
+    font-weight: 400;
+    font-size: 0.766vw;
+    line-height: 1.25;
+    margin-bottom: 0.1em;
+    text-align: justify;
+  }
+
+  /* Mobile: flatten into a single-column flow for readability */
+  @media (max-width: 700px) {
+    .slide-about {
+      aspect-ratio: auto;
+      height: auto;
+      padding: 40px 22px 50px;
+    }
+    .slide-about .portrait,
+    .slide-about .heading,
+    .slide-about .block,
+    .slide-about .icon {
+      position: static;
+      transform: none;
+      width: 100%;
+      height: auto;
+      white-space: normal;
+      margin: 0 0 14px;
+      display: block;
+    }
+    .slide-about .heading {
+      font-size: 22px;
+      text-align: left;
+      margin-top: 26px;
+      margin-bottom: 10px;
+    }
+    .slide-about .block { font-size: 13px; line-height: 1.45; text-align: left; }
+    .slide-about .block--job { display: block; }
+    .slide-about .job-title { font-size: 15px; }
+    .slide-about .job-meta, .slide-about .job-list li { font-size: 13px; }
+    .slide-about .portrait img { max-width: 200px; margin: 0 auto 20px; }
+    .slide-about .icon { display: none; }   /* hide free-floating icons; inline them via contact block instead */
+  }
+
+  /* ==== PROJECT GRID ==== */
+  .projects-wrap {
+    background: var(--paper);
+    padding: 90px 24px 100px;
+    position: relative;
+  }
+  .projects-wrap .rail {
+    max-width: 1280px;
+    margin: 0 auto 40px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+  .projects-wrap .rail .tick {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--wine);
+    font-weight: 500;
+  }
+  .projects-wrap .rail .count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--muted);
+  }
+  .projects-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 960px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  }
+  @media (max-width: 600px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+  .project-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid rgba(17,17,17,0.06);
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    padding: 0;
+    text-align: left;
+    font: inherit;
+    transition: transform 0.4s cubic-bezier(.2,.8,.3,1), box-shadow 0.4s ease;
+  }
+  .project-card:focus-visible {
+    outline: 2px solid var(--wine);
+    outline-offset: 3px;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -20px rgba(0,0,0,0.18);
+  }
+  .project-card .thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .project-card .thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.8s cubic-bezier(.2,.8,.3,1);
+  }
+  .project-card:hover .thumb img { transform: scale(1.05); }
+
+  .project-card .num {
+    position: absolute;
+    top: 16px;
+    left: 18px;
+    z-index: 2;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #fff;
+    background: rgba(17, 17, 17, 0.55);
+    padding: 4px 12px;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .project-card .meta {
+    padding: 22px 24px 26px;
+    border-top: 1px solid rgba(17,17,17,0.06);
+  }
+  .project-card .meta .kind {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--wine);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .project-card .meta h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .project-card .meta p {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .project-card .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--ink);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .project-card .cta svg {
+    transition: transform 0.3s ease;
+  }
+  .project-card:hover .cta svg { transform: translateX(6px); }
+
+  /* ==== PORTFOLIO STRIP (PAGES STITCHED, TRULY SEAMLESS) ==== */
+  /* iOS-safe approach — plain block layout, no GPU compositor layers.
+     iOS Safari chokes if every image becomes its own GPU layer, so we
+     rely entirely on:
+       1. White backgrounds (any residual gap blends into page bg)
+       2. font-size:0 + line-height:0 to kill inline whitespace
+       3. display:block + vertical-align:top on images
+       4. margin-top:-1px overlap to hide any sub-pixel gap              */
+  .hero, .portfolio-strip {
+    background: var(--paper);
+    font-size: 0;
+    line-height: 0;
+  }
+  .portfolio-strip .page,
+  .hero .page {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: top;
+  }
+  /* Pull every image after the first UP by 1px to hide sub-pixel seams. */
+  .portfolio-strip .page + .page,
+  .portfolio-strip .chapter-anchor + .page,
+  .hero .page + .page {
+    margin-top: -1px;
+  }
+  /* Adjacent strip sections overlap each other too. */
+  .portfolio-strip + .portfolio-strip { margin-top: -1px; }
+
+  .chapter-anchor {
+    /* scroll target only — no visual break */
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    scroll-margin-top: 80px;
+  }
+
+  /* ==== FOOTER / CONTACT ==== */
+  footer.contact {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 110px 24px 60px;
+    text-align: center;
+  }
+  footer.contact h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 6vw, 88px);
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 18px;
+  }
+  footer.contact h2 em {
+    font-style: italic;
+    color: #d9a5a5;
+  }
+  footer.contact p.sub {
+    max-width: 620px;
+    margin: 0 auto 44px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(251,250,247,0.7);
+    font-weight: 300;
+  }
+  footer.contact .links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+  footer.contact .links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 26px;
+    border: 1px solid rgba(251,250,247,0.2);
+    color: var(--paper);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border-radius: 999px;
+  }
+  footer.contact .links a:hover {
+    background: var(--paper);
+    color: var(--ink);
+    border-color: var(--paper);
+  }
+  footer.contact .divider {
+    width: 60px;
+    height: 1px;
+    background: rgba(251,250,247,0.25);
+    margin: 40px auto;
+  }
+  footer.contact .fine {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(251,250,247,0.45);
+  }
+
+  /* ==== BACK TO TOP ==== */
+  .to-top {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--wine);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 50;
+    box-shadow: 0 10px 30px -5px rgba(107,18,18,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    border: 0;
+  }
+  .to-top.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .to-top:hover { transform: translateY(-3px); background: var(--wine-dark); }
+
+  /* ==== FADE-IN ON SCROLL ==== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ==== PROJECT VIEWER MODAL ====
+     Minimalist full-screen overlay. Opens when a card is clicked,
+     shows the selected project's pages stacked vertically, and
+     supports Prev/Next project traversal + ESC/back to close. */
+
+  .viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    background: var(--paper);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.015);
+    transition:
+      opacity 0.5s cubic-bezier(.22,.8,.28,1),
+      transform 0.5s cubic-bezier(.22,.8,.28,1),
+      visibility 0s linear 0.5s;
+  }
+  .viewer.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1);
+    transition:
+      opacity 0.55s cubic-bezier(.22,.8,.28,1),
+      transform 0.55s cubic-bezier(.22,.8,.28,1),
+      visibility 0s;
+  }
+  body.viewer-locked { overflow: hidden; }
+
+  /* Top bar — back, project title, counter */
+  .viewer-top {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 16px 28px;
+    background: rgba(251, 250, 247, 0.85);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 1px solid rgba(107, 18, 18, 0.07);
+  }
+  .viewer-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    padding: 8px 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    transition: color 0.2s ease, transform 0.3s cubic-bezier(.2,.8,.3,1);
+  }
+  .viewer-back:hover { color: var(--wine); transform: translateX(-3px); }
+  .viewer-back svg { transition: transform 0.3s ease; }
+  .viewer-back:hover svg { transform: translateX(-4px); }
+
+  .viewer-title-wrap {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: center;
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(.2,.8,.3,1);
+  }
+  .viewer-title-wrap.swap {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  .viewer .kind-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--wine);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .viewer .proj-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .viewer .proj-title em {
+    font-style: italic;
+    color: var(--wine);
+  }
+
+  .viewer-counter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--muted);
+    white-space: nowrap;
+    min-width: 70px;
+    text-align: right;
+  }
+
+  /* Scroll area */
+  .viewer-scroll {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 40px 24px 160px;
+  }
+  .viewer-pages {
+    max-width: 1160px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    transition: opacity 0.35s cubic-bezier(.2,.8,.3,1),
+                transform 0.45s cubic-bezier(.2,.8,.3,1);
+  }
+  .viewer-pages.swap {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  .viewer-pages .page-slot {
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(17,17,17,0.04), 0 24px 60px -28px rgba(17,17,17,0.18);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.8,.3,1);
+  }
+  .viewer-pages .page-slot.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .viewer-pages .page-slot img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .viewer-pages .page-slot .slot-num {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 2px;
+    color: var(--muted);
+    opacity: 0.6;
+  }
+  .viewer-pages .page-slot { position: relative; }
+
+  /* Floating bottom nav — prev / next project */
+  .viewer-nav {
+    position: absolute;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%) translateY(40px);
+    z-index: 4;
+    display: flex;
+    align-items: stretch;
+    gap: 1px;
+    background: rgba(17,17,17,0.92);
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: 0 22px 50px -18px rgba(17,17,17,0.45);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(.22,.8,.28,1) 0.25s,
+                opacity 0.5s ease 0.25s;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .viewer.open .viewer-nav {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  .viewer-nav button {
+    appearance: none;
+    background: transparent;
+    color: #f7f3ec;
+    border: 0;
+    cursor: pointer;
+    padding: 16px 28px;
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    min-width: 170px;
+    justify-content: center;
+  }
+  .viewer-nav button:hover {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+  }
+  .viewer-nav button:disabled {
+    opacity: 0.32;
+    cursor: not-allowed;
+  }
+  .viewer-nav .sep {
+    width: 1px;
+    background: rgba(255,255,255,0.12);
+    align-self: stretch;
+  }
+  .viewer-nav .peek {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    text-transform: none;
+    font-weight: 400;
+  }
+  .viewer-nav button .arrow {
+    display: inline-flex;
+    transition: transform 0.3s cubic-bezier(.2,.8,.3,1);
+  }
+  .viewer-nav .prev:hover .arrow { transform: translateX(-4px); }
+  .viewer-nav .next:hover .arrow { transform: translateX(4px); }
+
+  @media (max-width: 720px) {
+    .viewer-top { padding: 14px 18px; gap: 12px; }
+    .viewer .proj-title { font-size: 18px; }
+    .viewer-scroll { padding: 24px 14px 140px; }
+    .viewer-pages { gap: 18px; }
+    .viewer-nav { bottom: 18px; border-radius: 22px; }
+    .viewer-nav button { min-width: 0; padding: 14px 16px; font-size: 10px; letter-spacing: 2px; }
+    .viewer-nav .peek { display: none; }
+    .viewer-counter { display: none; }
+  }
+
+  /* Keyboard-only stagger on open */
+  @keyframes slotIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .viewer, .viewer-pages, .viewer-pages .page-slot, .viewer-nav,
+    .project-card, .project-card .thumb img,
+    .reveal, .viewer-title-wrap {
+      transition: none !important;
+      animation: none !important;
+    }
+    .viewer-pages .page-slot { opacity: 1; transform: none; }
+  }
+
+  /* ==== LANDING LOAD-IN CHOREOGRAPHY ====
+     On first load every hero element starts hidden behind a soft blur and
+     peels in one layer at a time, like paper being laid down on a table.
+     Once the hero finishes, the About slide un-blurs from a glassy state
+     so the transition between the two feels like a slow pull-focus. */
+  .hero-cover .bg-white,
+  .hero-cover .portrait-frame,
+  .hero-cover .title .port,
+  .hero-cover .title .folio,
+  .hero-cover .name-first,
+  .hero-cover .name-last,
+  .hero-cover .subtitle,
+  .hero-cover .year {
+    opacity: 0;
+    filter: blur(18px);
+    transform: scale(1.035);
+    will-change: opacity, filter, transform;
+  }
+
+  @keyframes heroReveal {
+    0%   { opacity: 0; filter: blur(18px); transform: scale(1.035); }
+    60%  { opacity: 1; }
+    100% { opacity: 1; filter: blur(0);    transform: scale(1); }
+  }
+
+  /* Stagger: paper panel → portrait → PORT/FOLIO → names → meta.
+     Durations are deliberately long-and-soft (~1s) with generous easing
+     so the layering reads as atmospheric rather than twitchy. */
+  body.loaded .hero-cover .bg-white       { animation: heroReveal 1.10s 0.10s cubic-bezier(.22,.8,.28,1) both; }
+  body.loaded .hero-cover .portrait-frame { animation: heroReveal 1.20s 0.45s cubic-bezier(.22,.8,.28,1) both; }
+  body.loaded .hero-cover .title .port    { animation: heroReveal 1.00s 0.85s cubic-bezier(.22,.8,.28,1) both; }
+  body.loaded .hero-cover .title .folio   { animation: heroReveal 1.00s 1.05s cubic-bezier(.22,.8,.28,1) both; }
+  body.loaded .hero-cover .name-first     { animation: heroReveal 0.95s 1.30s cubic-bezier(.22,.8,.28,1) both; }
+  body.loaded .hero-cover .name-last      { animation: heroReveal 0.95s 1.50s cubic-bezier(.22,.8,.28,1) both; }
+  body.loaded .hero-cover .subtitle       { animation: heroReveal 0.90s 1.75s cubic-bezier(.22,.8,.28,1) both; }
+  body.loaded .hero-cover .year           { animation: heroReveal 0.90s 1.95s cubic-bezier(.22,.8,.28,1) both; }
+
+  /* About slide starts frosted + dimmed; un-blurs AFTER hero is settled.
+     The transition-delay buys the hero its ~2.5s reveal window. */
+  .slide-about {
+    filter: blur(14px);
+    opacity: 0.55;
+    transform: scale(1.01);
+    transition:
+      filter    1.25s cubic-bezier(.22,.8,.28,1) 2.35s,
+      opacity   1.25s cubic-bezier(.22,.8,.28,1) 2.35s,
+      transform 1.25s cubic-bezier(.22,.8,.28,1) 2.35s;
+  }
+  body.loaded .slide-about {
+    filter: blur(0);
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Brief pre-load veil — prevents a flash of unstyled hero on slow connections.
+     Fades out the instant `body.loaded` is set. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--paper);
+    z-index: 500;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+  }
+  body.loaded::before { opacity: 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cover .bg-white,
+    .hero-cover .portrait-frame,
+    .hero-cover .title .port,
+    .hero-cover .title .folio,
+    .hero-cover .name-first,
+    .hero-cover .name-last,
+    .hero-cover .subtitle,
+    .hero-cover .year {
+      opacity: 1; filter: none; transform: none; animation: none !important;
+    }
+    .slide-about { filter: none; opacity: 1; transform: none; transition: none; }
+    body::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==== TOP NAV ==== -->
+<nav class="top">
+  <div class="inner">
+    <div class="brand">Aadhya <span>Gupta</span></div>
+    <ul>
+      <li><a href="#top">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ==== HERO (Cover — rebuilt semantically from Figma) ==== -->
+<section class="hero-cover" id="top" aria-label="Portfolio cover">
+  <div class="bg-white" aria-hidden="true"></div>
+  <h1 class="title"><span class="port">PORT</span><span class="folio">FOLIO</span></h1>
+  <p class="subtitle">Textile Design</p>
+  <div class="portrait-frame" aria-hidden="true">
+    <img src="images_web/cover-portrait.png" alt="Aadhya Gupta" />
+  </div>
+  <p class="name-first">Aadhya</p>
+  <p class="name-last">Gupta</p>
+  <p class="year">2026</p>
+</section>
+<!-- ==== ABOUT / SKILLS / EXPERIENCE (semantically rebuilt from Figma frame 39:205) ==== -->
+<section class="slide-about" id="about" aria-label="About Aadhya, skills and experience">
+
+  <!-- Portrait -->
+  <div class="portrait" aria-hidden="true">
+    <img src="images_web/slide-about/portrait.png" alt="" />
+  </div>
+
+  <!-- Section headings -->
+  <h2 class="heading heading--about-me">About Me</h2>
+  <h2 class="heading heading--software">Software Skills</h2>
+  <h2 class="heading heading--creative">Creative Skills</h2>
+  <h2 class="heading heading--languages">Languages</h2>
+  <h2 class="heading heading--education">Education</h2>
+  <h2 class="heading heading--work">Work Experience</h2>
+
+  <!-- Bio -->
+  <div class="block block--bio">
+    <p>I&rsquo;m Aadhya, 22, and I think I see the world in textures before I see it in words &mdash; a handwoven scarf on a stranger, the way light falls across a crumpled bedsheet, the accidental gradient on a chai-stained napkin. Design, for me, is really just a way of paying attention. Outside the studio, I sing, collect colour swatches like other people collect playlists, and have a soft spot for late-night conversations that wander into philosophy. I believe beauty is a form of attention and that the best designs, like the best people, have a little wildness stitched into them.</p>
+  </div>
+
+  <!-- Software skills -->
+  <div class="block block--list block--software">
+    <p>Adobe Illustrator</p>
+    <p>Adobe Photoshop</p>
+    <p>Adobe InDesign</p>
+    <p>Adobe Lightroom</p>
+    <p>Procreate</p>
+    <p>Canva</p>
+    <p>Figma</p>
+    <p>Sketchbook</p>
+  </div>
+
+  <!-- Creative skills -->
+  <div class="block block--list block--creative">
+    <p>Fabric construction</p>
+    <p>Surface technique</p>
+    <p>Art work (painting)</p>
+    <p>Illustration</p>
+    <p>Video Editing</p>
+  </div>
+
+  <!-- Languages -->
+  <div class="block block--list block--languages-list">
+    <p>English, Hindi, Bhojpuri, Nepali</p>
+  </div>
+
+  <!-- Education -->
+  <div class="block block--education">
+    <p><strong>National Institute of Fashion Technology |</strong></p>
+    <p><strong>2021 - 2027</strong></p>
+    <p>Bachelors of Design in Textile Design</p>
+    <p>&nbsp;</p>
+    <p><strong>Gopal Sah | 2019-2021</strong></p>
+    <p>Class 12</p>
+  </div>
+
+  <!-- Contact icons (phone removed — email + links only) -->
+  <img class="icon icon--envelope" src="images_web/slide-about/icon-envelope.png" alt="" aria-hidden="true" />
+  <img class="icon icon--globe"    src="images_web/slide-about/icon-globe.png"    alt="" aria-hidden="true" />
+
+  <!-- Contact block -->
+  <div class="block block--contact">
+    <p>aadhya.gupta@nift.ac.in</p>
+    <p>&nbsp;</p>
+    <p><a href="https://www.linkedin.com/in/aadhya-gupta-015bb6363/" target="_blank" rel="noopener">linkedin.com/in/aadhya-gupta-015bb6363</a></p>
+    <p>&nbsp;</p>
+    <p><a href="https://github.com/aadhyagupta185-jpg" target="_blank" rel="noopener">github.com/aadhyagupta185-jpg</a></p>
+  </div>
+
+  <!-- Work Experience: Graphic Design intern -->
+  <div class="block block--job block--job-1">
+    <p class="job-title">Graphic Design intern</p>
+    <p class="job-meta">Kairoisty | Oct 2025 - Dec 2025</p>
+    <ul class="job-list">
+      <li>Developed the foundational color palette defining the brand&rsquo;s visual identity system, mapping primary, secondary, and tertiary colors to specific UI components, content sections, and interactive states across the website</li>
+      <li>Created thematic moodboards and visual direction that informed the brand&rsquo;s overall design language and digital presence</li>
+    </ul>
+  </div>
+
+  <!-- Work Experience: Undergraduate Craft Researcher -->
+  <div class="block block--job block--job-2">
+    <p class="job-title">Undergraduate Craft Researcher</p>
+    <p class="job-meta">NIFT | Dec 2015 - Sep 2019</p>
+    <ul class="job-list">
+      <li>Conducted a 10-day field study under master artisans Zakir Hussain and Adil in Jaipur</li>
+      <li>Practiced Bandhani, Shibori, Clamp resist, and Leheriya dyeing techniques hands-on</li>
+      <li>Created swatches from fabric preparation through dyeing, fixation, and final wash</li>
+      <li>Documented artisan workflows, tools, raw materials, and cultural significance of each technique</li>
+      <li>Performed market analysis and SWOT assessment of the Tie &amp; Dye industry in contemporary fashion</li>
+    </ul>
+  </div>
+
+  <!-- Work Experience: Surface Embellishment & Print Development -->
+  <div class="block block--job block--job-3">
+    <p class="job-title">Surface Embellishment &amp; Print Development</p>
+    <p class="job-meta">NIFT | Jun 2022 - Dec 2022</p>
+    <ul class="job-list">
+      <li>Explored surface embellishment techniques including texture building, layering, and mixed-media applications</li>
+      <li>Developed original print concepts from ideation through repeat-ready artwork</li>
+      <li>Integrated hand and digital methods in print development</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ==== PROJECT GRID (custom interactive component between PDF pages) ==== -->
+<div class="projects-wrap" id="projects">
+  <div class="rail">
+    <span class="tick">The Collections</span>
+    <span class="count">Nine studies in print, weave &amp; thread</span>
+  </div>
+  <div class="projects-grid">
+
+    <button class="project-card reveal" type="button" data-project="1">
+      <div class="thumb">
+        <img src="thumbs/thumb-01.jpg" alt="Florilegium preview" loading="lazy" />
+        <span class="num">01</span>
+      </div>
+      <div class="meta">
+        <div class="kind">Print Development</div>
+        <h3>Florilegium</h3>
+        <p>A gathering of flowers, gently studied.</p>
+        <span class="cta">View Collection
+          <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5h16m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </span>
+      </div>
+    </button>
+
+    <button class="project-card reveal" type="button" data-project="2">
+      <div class="thumb">
+        <img src="thumbs/thumb-02.jpg" alt="Noor-e-Mahal preview" loading="lazy" />
+        <span class="num">02</span>
+      </div>
+      <div class="meta">
+        <div class="kind">Print Development</div>
+        <h3>Noor-e-Mahal</h3>
+        <p>An ode to the architecture of light.</p>
+        <span class="cta">View Collection
+          <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5h16m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </span>
+      </div>
+    </button>
+
+    <button class="project-card reveal" type="button" data-project="3">
+      <div class="thumb">
+        <img src="thumbs/thumb-03.jpg" alt="Between Tides preview" loading="lazy" />
+        <span class="num">03</span>
+      </div>
+      <div class="meta">
+        <div class="kind">Print Development</div>
+        <h3>Between Tides</h3>
+        <p>Suspended between the sea and the self.</p>
+        <span class="cta">View Collection
+          <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5h16m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </span>
+      </div>
+    </button>
+
+    <button class="project-card reveal" type="button" data-project="4">
+      <div class="thumb">
+        <img src="thumbs/thumb-04.jpg" alt="Hibiscus Heat preview" loading="lazy" />
+        <span class="num">04</span>
+      </div>
+      <div class="meta">
+        <div class="kind">Print Development</div>
+        <h3>Hibiscus Heat</h3>
+        <p>Where hibiscus meets heat and nothing stays quiet.</p>
+        <span class="cta">View Collection
+          <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5h16m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </span>
+      </div>
+    </button>
+
+    <button class="project-card reveal" type="button" data-project="5">
+      <div class="thumb">
+        <img src="thumbs/thumb-05.jpg" alt="Maisonette preview" loading="lazy" />
+        <span class="num">05</span>
+      </div>
+      <div class="meta">
+        <div class="kind">Print Development</div>
+        <h3>Maisonette</h3>
+        <p>A little house, held in pattern.</p>
+        <span class="cta">View Collection
+          <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5h16m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </span>
+      </div>
+    </button>
+
+    <button class="project-card reveal" type="button" data-project="6">
+      <div class="thumb">
+        <img src="thumbs/thumb-06.jpg" alt="Sugarpie preview" loading="lazy" />
+        <span class="num">06</span>
+      </div>
+      <div class="meta">
+        <div class="kind">Print Development</div>
+        <h3>Sugarpie</h3>
+        <p>Small humans, sweet patterns.</p>
+        <span class="cta">View Collection
+          <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5h16m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </span>
+      </div>
+    </button>
+
+    <button class="project-card reveal" type="button" data-project="7">
+      <div class="thumb">
+        <img src="thumbs/thumb-07.jpg" alt="Velvet Hour preview" loading="lazy" />
+        <span class="num">07</span>
+      </div>
+      <div class="meta">
+        <div class="kind">Print Development</div>
+        <h3>Velvet Hour</h3>
+        <p>Oxblood roses and quiet drama.</p>
+        <span class="cta">View Collection
+          <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5h16m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </span>
+      </div>
+    </button>
+
+    <button class="project-card reveal" type="button" data-project="8">
+      <div class="thumb">
+        <img src="thumbs/thumb-08.jpg" alt="Neel Nagri preview" loading="lazy" />
+        <span class="num">08</span>
+      </div>
+      <div class="meta">
+        <div class="kind">Weave Design</div>
+        <h3>Neel Nagri</h3>
+        <p>A city built in blue, woven into cloth.</p>
+        <span class="cta">View Collection
+          <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5h16m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </span>
+      </div>
+    </button>
+
+    <button class="project-card reveal" type="button" data-project="9">
+      <div class="thumb">
+        <img src="thumbs/thumb-09.jpg" alt="Inkthread preview" loading="lazy" />
+        <span class="num">09</span>
+      </div>
+      <div class="meta">
+        <div class="kind">Surface Embellishment</div>
+        <h3>Inkthread</h3>
+        <p>Line drawings, carried by needle and thread.</p>
+        <span class="cta">View Collection
+          <svg width="18" height="10" viewBox="0 0 18 10" fill="none"><path d="M1 5h16m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </span>
+      </div>
+    </button>
+
+  </div>
+</div>
+
+<!-- ==== PROJECT VIEWER MODAL ====
+     Hidden by default. Opens when a card is clicked (see project-viewer.js below).
+     Vertical pageless view + floating Prev/Next project controls. -->
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="viewerTitle">
+
+  <div class="viewer-top">
+    <button type="button" class="viewer-back" id="viewerBack" aria-label="Back to collections">
+      <svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true">
+        <path d="M17 5H1m0 0l4 4M1 5l4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Collections</span>
+    </button>
+
+    <div class="viewer-title-wrap" id="viewerTitleWrap">
+      <span class="kind-tag" id="viewerKind">&nbsp;</span>
+      <span class="proj-title" id="viewerTitle">&nbsp;</span>
+    </div>
+
+    <div class="viewer-counter" id="viewerCounter">&nbsp;</div>
+  </div>
+
+  <div class="viewer-scroll" id="viewerScroll">
+    <div class="viewer-pages" id="viewerPages" aria-live="polite"></div>
+  </div>
+
+  <nav class="viewer-nav" aria-label="Project navigation">
+    <button type="button" class="prev" id="viewerPrev">
+      <span class="arrow" aria-hidden="true">
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+          <path d="M13 5H1m0 0l4 4M1 5l4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span>Previous</span>
+      <span class="peek" id="viewerPrevPeek">&nbsp;</span>
+    </button>
+    <span class="sep" aria-hidden="true"></span>
+    <button type="button" class="next" id="viewerNext">
+      <span class="peek" id="viewerNextPeek">&nbsp;</span>
+      <span>Next</span>
+      <span class="arrow" aria-hidden="true">
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+          <path d="M1 5h12m0 0l-4 4m4-4l-4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
+  </nav>
+</div>
+
+<!-- ==== CONTACT ==== -->
+<footer class="contact" id="contact">
+  <h2>Let's <em>talk</em> textiles.</h2>
+  <p class="sub">
+    Open to collaborations, internships, and late-night conversations about
+    print, pattern, and the quiet discipline of making beautiful things.
+  </p>
+  <div class="links">
+    <a href="mailto:aadhyagupta185@gmail.com" aria-label="Email">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 7l9 6 9-6M5 4h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5"/></svg>
+      aadhyagupta185@gmail.com
+    </a>
+    <a href="https://www.linkedin.com/in/aadhya-gupta-015bb6363/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="2.5" width="19" height="19" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 10v7M7 7.5v.01M11 17v-4.5a2 2 0 014 0V17M11 10v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/aadhyagupta185-jpg" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.48v-1.7c-2.78.62-3.37-1.36-3.37-1.36-.45-1.17-1.11-1.48-1.11-1.48-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0112 7.07c.85.004 1.7.12 2.5.34 1.9-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.81c0 .27.18.58.69.48A10.02 10.02 0 0022 12.25C22 6.58 17.52 2 12 2z" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
+      GitHub
+    </a>
+  </div>
+  <div class="divider"></div>
+  <div class="fine">
+    Aadhya Gupta &middot; Textile Design &middot; NIFT 2026
+  </div>
+</footer>
+
+<!-- ==== BACK TO TOP ==== -->
+<button class="to-top" id="toTop" aria-label="Back to top">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 19V5m0 0l-7 7m7-7l7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+</button>
+
+<script>
+  // ---- Landing load-in: triggers the hero layer-reveal + About un-blur.
+  // We wait until the cover portrait is actually decoded (so the image
+  // doesn't pop in mid-animation), with a 1.5s safety cap if it's slow.
+  (function primeLanding() {
+    const portrait = document.querySelector('.hero-cover .portrait-frame img');
+    let fired = false;
+    const fire = () => {
+      if (fired) return;
+      fired = true;
+      requestAnimationFrame(() => document.body.classList.add('loaded'));
+    };
+    if (portrait && portrait.complete && portrait.naturalWidth > 0) {
+      fire();
+    } else if (portrait) {
+      portrait.addEventListener('load',  fire, { once: true });
+      portrait.addEventListener('error', fire, { once: true });
+    }
+    // Fallback: always reveal within 1.5s so a broken image never traps the page
+    setTimeout(fire, 1500);
+  })();
+
+  // Fade-in on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Back to top
+  const toTop = document.getElementById('toTop');
+  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Nav: hidden by default. Slides DOWN only while user is scrolling UP
+  // (and past the hero). Hides when scrolling down, or when near the top.
+  const nav = document.querySelector('nav.top');
+  const REVEAL_AFTER = 400;        // need to be this far down before nav can show
+  const DELTA_THRESHOLD = 4;       // ignore tiny wobble
+  const TOP_HIDE_ZONE = 80;        // very top: keep nav hidden
+  let lastY = window.scrollY;
+  let ticking = false;
+
+  function onScroll() {
+    const y = window.scrollY;
+    const dy = y - lastY;
+
+    // Near the top → always hide (so hero/cover reads cleanly)
+    if (y < TOP_HIDE_ZONE) {
+      nav.classList.remove('show');
+    } else if (dy < -DELTA_THRESHOLD && y > REVEAL_AFTER) {
+      // scrolling up, past the hero → reveal
+      nav.classList.add('show');
+    } else if (dy > DELTA_THRESHOLD) {
+      // scrolling down → hide
+      nav.classList.remove('show');
+    }
+
+    // Back-to-top button
+    if (y > 600) toTop.classList.add('show');
+    else toTop.classList.remove('show');
+
+    lastY = y;
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  /* ==== PROJECT VIEWER ====
+     Opens when a .project-card is clicked. Shows the selected project's
+     page images stacked vertically, with floating Prev / Next controls. */
+
+  const PROJECTS = [
+    { n: '01', title: 'Florilegium',    kind: 'Print Development',    pages: [4,5,6,7,8,9,10] },
+    { n: '02', title: 'Noor-e-Mahal',   kind: 'Print Development',    pages: [11,12,13,14,15] },
+    { n: '03', title: 'Between Tides',  kind: 'Print Development',    pages: [16,17,18,19] },
+    { n: '04', title: 'Hibiscus Heat',  kind: 'Print Development',    pages: [20,21,22,23,24] },
+    { n: '05', title: 'Maisonette',     kind: 'Print Development',    pages: [25,26,27,28,29] },
+    { n: '06', title: 'Sugarpie',       kind: 'Print Development',    pages: [30,31,32,33,34,35,36] },
+    { n: '07', title: 'Velvet Hour',    kind: 'Print Development',    pages: [37,38,39,40,41] },
+    { n: '08', title: 'Neel Nagri',     kind: 'Weave Design',         pages: [42,43,44,45] },
+    { n: '09', title: 'Inkthread',      kind: 'Surface Embellishment',pages: [46,47,48] },
+  ];
+
+  const viewer       = document.getElementById('viewer');
+  const viewerBack   = document.getElementById('viewerBack');
+  const viewerTitle  = document.getElementById('viewerTitle');
+  const viewerKind   = document.getElementById('viewerKind');
+  const viewerTW     = document.getElementById('viewerTitleWrap');
+  const viewerCount  = document.getElementById('viewerCounter');
+  const viewerScroll = document.getElementById('viewerScroll');
+  const viewerPages  = document.getElementById('viewerPages');
+  const viewerPrev   = document.getElementById('viewerPrev');
+  const viewerNext   = document.getElementById('viewerNext');
+  const prevPeek     = document.getElementById('viewerPrevPeek');
+  const nextPeek     = document.getElementById('viewerNextPeek');
+
+  let currentIdx = -1;
+  let pageObserver = null;
+  let lastFocusedCard = null;
+
+  function pad2(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function renderPages(proj) {
+    // clear any existing observer
+    if (pageObserver) { pageObserver.disconnect(); pageObserver = null; }
+
+    viewerPages.innerHTML = '';
+    proj.pages.forEach((pnum, i) => {
+      const slot = document.createElement('figure');
+      slot.className = 'page-slot';
+      const img = document.createElement('img');
+      img.src = `images_web/page-${pad2(pnum)}.jpg`;
+      img.alt = `${proj.title} — page ${i + 1}`;
+      img.loading = i < 2 ? 'eager' : 'lazy';
+      img.decoding = 'async';
+      const tag = document.createElement('span');
+      tag.className = 'slot-num';
+      tag.textContent = `${pad2(i + 1)} / ${pad2(proj.pages.length)}`;
+      slot.appendChild(img);
+      slot.appendChild(tag);
+      viewerPages.appendChild(slot);
+    });
+
+    // Stagger-reveal each page slot as it scrolls into view.
+    pageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          pageObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, root: viewerScroll });
+
+    viewerPages.querySelectorAll('.page-slot').forEach((el, i) => {
+      // Small staged delay so the first 3-4 cascade nicely even if in view immediately.
+      el.style.transitionDelay = Math.min(i, 6) * 70 + 'ms';
+      pageObserver.observe(el);
+    });
+
+    // Force-show the first slot right away (in case initial IO pass is flaky).
+    requestAnimationFrame(() => {
+      const first = viewerPages.querySelector('.page-slot');
+      if (first) first.classList.add('in');
+    });
+  }
+
+  function setProject(idx, { animate = true } = {}) {
+    if (idx < 0 || idx >= PROJECTS.length) return;
+    const proj = PROJECTS[idx];
+    const prev = idx > 0 ? PROJECTS[idx - 1] : null;
+    const next = idx < PROJECTS.length - 1 ? PROJECTS[idx + 1] : null;
+
+    const apply = () => {
+      viewerKind.textContent  = proj.kind;
+      viewerTitle.innerHTML   = proj.title.replace(/^(\S+)\s(.+)$/, '$1 <em>$2</em>');
+      viewerCount.textContent = `${proj.n} / 09`;
+      prevPeek.textContent    = prev ? prev.title : '';
+      nextPeek.textContent    = next ? next.title : '';
+      viewerPrev.disabled     = !prev;
+      viewerNext.disabled     = !next;
+
+      renderPages(proj);
+
+      // Reset scroll to top for the new project.
+      viewerScroll.scrollTop = 0;
+
+      currentIdx = idx;
+      // Update URL hash so refresh preserves position.
+      history.replaceState(null, '', '#project-' + proj.n);
+    };
+
+    if (!animate) { apply(); return; }
+
+    // Cross-fade: fade out current pages + title, then swap + fade in.
+    viewerTW.classList.add('swap');
+    viewerPages.classList.add('swap');
+    setTimeout(() => {
+      apply();
+      requestAnimationFrame(() => {
+        viewerTW.classList.remove('swap');
+        viewerPages.classList.remove('swap');
+      });
+    }, 280);
+  }
+
+  function openViewer(idx, triggerEl) {
+    lastFocusedCard = triggerEl || null;
+    setProject(idx, { animate: false });
+    viewer.classList.add('open');
+    viewer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('viewer-locked');
+    // Focus the back button for accessibility.
+    setTimeout(() => viewerBack.focus({ preventScroll: true }), 50);
+  }
+
+  function closeViewer() {
+    viewer.classList.remove('open');
+    viewer.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('viewer-locked');
+    history.replaceState(null, '', '#projects');
+    if (lastFocusedCard) {
+      lastFocusedCard.focus({ preventScroll: true });
+      lastFocusedCard = null;
+    }
+    // Clean up observer.
+    if (pageObserver) { pageObserver.disconnect(); pageObserver = null; }
+  }
+
+  // Hook up cards
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      const n = parseInt(card.getAttribute('data-project'), 10);
+      if (!Number.isFinite(n)) return;
+      e.preventDefault();
+      openViewer(n - 1, card);
+    });
+  });
+
+  // Back / prev / next
+  viewerBack.addEventListener('click', closeViewer);
+  viewerPrev.addEventListener('click', () => {
+    if (currentIdx > 0) setProject(currentIdx - 1);
+  });
+  viewerNext.addEventListener('click', () => {
+    if (currentIdx < PROJECTS.length - 1) setProject(currentIdx + 1);
+  });
+
+  // ESC + arrow keys
+  document.addEventListener('keydown', (e) => {
+    if (!viewer.classList.contains('open')) return;
+    if (e.key === 'Escape') { e.preventDefault(); closeViewer(); }
+    else if (e.key === 'ArrowLeft'  && currentIdx > 0)                     { e.preventDefault(); setProject(currentIdx - 1); }
+    else if (e.key === 'ArrowRight' && currentIdx < PROJECTS.length - 1)   { e.preventDefault(); setProject(currentIdx + 1); }
+  });
+
+  // Deep link: if the page opens with #project-0N, auto-open that project.
+  (function bootFromHash() {
+    const m = /^#project-(\d{1,2})$/.exec(location.hash);
+    if (!m) return;
+    const n = parseInt(m[1], 10);
+    if (n >= 1 && n <= PROJECTS.length) {
+      // Defer until after initial render so the grid is settled.
+      setTimeout(() => openViewer(n - 1, null), 120);
+    }
+  })();
+</script>
+
+</body>
+</html>

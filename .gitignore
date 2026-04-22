@@ -1,0 +1,18 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Scratch / verification files
+_verify_*.py
+_verify_*.png
+_debug_*.py
+_debug_*.png
+_partials/
+_worker_reports/
+_review/
+_slide_about/
+node_modules/
