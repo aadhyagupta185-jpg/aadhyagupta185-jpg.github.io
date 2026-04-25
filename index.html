@@ -919,17 +919,6 @@
     height: auto;
     display: block;
   }
-  .viewer-pages .page-slot .slot-num {
-    position: absolute;
-    top: 14px;
-    right: 16px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    font-style: italic;
-    letter-spacing: 2px;
-    color: var(--muted);
-    opacity: 0.6;
-  }
   .viewer-pages .page-slot { position: relative; }
 
   /* Floating bottom nav — prev / next project */
@@ -1597,11 +1586,7 @@
       img.alt = `${proj.title} — page ${i + 1}`;
       img.loading = i < 2 ? 'eager' : 'lazy';
       img.decoding = 'async';
-      const tag = document.createElement('span');
-      tag.className = 'slot-num';
-      tag.textContent = `${pad2(i + 1)} / ${pad2(proj.pages.length)}`;
       slot.appendChild(img);
-      slot.appendChild(tag);
       viewerPages.appendChild(slot);
     });
 
