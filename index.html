@@ -228,6 +228,40 @@ body.entry-ready .intro-curtain .intro-word{
 }
 body.entry-ready .intro-curtain{visibility:hidden;transition:visibility 0s 1.1s}
 @media(prefers-reduced-motion:reduce){.intro-curtain{display:none!important}}
+
+/* Final cover alignment: symmetrical outer margins and left-aligned subtitle.
+   Keep the nine letters in one measured row and the F entirely on white. */
+.hero .hero-label,body.entry-ready .hero .hero-label{
+  left:5%;right:5%;width:90%;top:5.3%;
+  transform:none;
+  display:grid;
+  grid-template-columns:repeat(9,minmax(0,1fr));
+  font-size:7.65vw;
+  margin:0;padding:0;
+  letter-spacing:0;
+}
+.hero .hero-label .hero-letter{
+  justify-content:center;
+  min-width:0;
+}
+.hero .hero-label .hero-letter:first-child{justify-content:flex-start}
+.hero .hero-label .hero-letter:last-child{justify-content:flex-end}
+/* The fifth cell crosses the split; align its F to the white half. */
+.hero .hero-label .hero-letter:nth-child(5){justify-content:flex-end;padding-right:.15vw}
+.hero .hero-subtitle{
+  left:5%;top:27%;
+  font-size:1.15vw;
+  font-weight:300;letter-spacing:.025em;
+  line-height:1.25;
+}
+@media(max-width:700px){
+  .hero .hero-label,body.entry-ready .hero .hero-label{
+    left:4%;right:4%;width:92%;top:10%;font-size:7.7vw;
+    transform:none;
+  }
+  .hero .hero-label .hero-letter:nth-child(5){padding-right:.1vw}
+  .hero .hero-subtitle{left:4%;top:25%;font-size:2.3vw}
+}
 </style></head><body><div class="intro-curtain" aria-hidden="true"><div class="half left"></div><div class="half right"></div><div class="intro-word">A A D H Y A</div></div>
 <nav class="topnav" id="nav"><div class="navinner"><a class="brand" href="#top">Aadhya Gupta</a><div class="navlinks"><a href="#about">About</a><a href="#projects">Collections</a><a href="#contact">Contact</a></div></div></nav>
 <section class="hero" id="top" aria-label="Portfolio cover"><h1 class="hero-label" aria-label="PORTFOLIO"><span class="hero-letter on-wine" style="--order:0" aria-hidden="true">P</span><span class="hero-letter on-wine" style="--order:1" aria-hidden="true">O</span><span class="hero-letter on-wine" style="--order:2" aria-hidden="true">R</span><span class="hero-letter on-wine" style="--order:3" aria-hidden="true">T</span><span class="hero-letter on-paper" style="--order:4" aria-hidden="true">F</span><span class="hero-letter on-paper" style="--order:5" aria-hidden="true">O</span><span class="hero-letter on-paper" style="--order:6" aria-hidden="true">L</span><span class="hero-letter on-paper" style="--order:7" aria-hidden="true">I</span><span class="hero-letter on-paper" style="--order:8" aria-hidden="true">O</span></h1><div class="hero-subtitle">Textile Design</div><div class="hero-portrait"><img src="images_web/cover-portrait.png" alt="Aadhya Gupta" fetchpriority="high"></div><div class="hero-name first">Aadhya</div><div class="hero-name last">Gupta</div><div class="hero-year">2026</div><span class="scroll-hint">Scroll to explore ↓</span></section>
