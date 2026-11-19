@@ -233,37 +233,65 @@ body.entry-ready .intro-curtain .intro-word{
 body.entry-ready .intro-curtain{visibility:hidden;transition:visibility 0s 1.1s}
 @media(prefers-reduced-motion:reduce){.intro-curtain{display:none!important}}
 
-/* Final cover alignment: symmetrical outer margins and left-aligned subtitle.
-   Keep the nine letters in one measured row and the F entirely on white. */
-.hero .hero-label,body.entry-ready .hero .hero-label{
-  left:5%;right:5%;width:90%;top:5.3%;
+/* Final cover title — actual, equal visible gaps between letters.
+   Flex space-between distributes unused room between glyph boxes, rather
+   than giving narrow I and wide O identical grid cells. */
+.hero .hero-label,
+body.entry-ready .hero .hero-label{
+  position:absolute;
+  left:5%;
+  right:5%;
+  top:5.3%;
+  width:90%;
+  margin:0;
+  padding:0;
   transform:none;
-  display:grid;
-  grid-template-columns:repeat(9,minmax(0,1fr));
-  font-size:7.65vw;
-  margin:0;padding:0;
+  display:flex;
+  flex-wrap:nowrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:0;
+  font-family:'Spectral SC',Georgia,serif;
+  font-size:clamp(23px,6.45vw,144px);
+  font-weight:400;
+  line-height:1.2;
   letter-spacing:0;
+  white-space:nowrap;
 }
-.hero .hero-label .hero-letter{
-  justify-content:center;
+.hero .hero-label .hero-letter,
+.hero .hero-label .hero-letter:first-child,
+.hero .hero-label .hero-letter:last-child,
+.hero .hero-label .hero-letter:nth-child(5){
+  display:inline-block;
+  flex:0 0 auto;
+  width:auto;
   min-width:0;
+  height:auto;
+  padding:0;
+  margin:0;
+  text-align:center;
+  line-height:inherit;
+  letter-spacing:0;
+  font:inherit;
 }
-.hero .hero-label .hero-letter:first-child{justify-content:flex-start}
-.hero .hero-label .hero-letter:last-child{justify-content:flex-end}
-/* The fifth cell crosses the split; align its F to the white half. */
-.hero .hero-label .hero-letter:nth-child(5){justify-content:flex-end;padding-right:.15vw}
+/* Subtitle begins on the same left alignment as the first P. */
 .hero .hero-subtitle{
-  left:5%;top:27%;
+  left:5%;
+  top:27%;
   font-size:1.15vw;
-  font-weight:300;letter-spacing:.025em;
+  font-weight:300;
+  letter-spacing:.025em;
   line-height:1.25;
 }
 @media(max-width:700px){
   .hero .hero-label,body.entry-ready .hero .hero-label{
-    left:4%;right:4%;width:92%;top:10%;font-size:7.7vw;
+    left:4%;
+    right:4%;
+    width:92%;
+    top:10%;
+    font-size:6.45vw;
     transform:none;
   }
-  .hero .hero-label .hero-letter:nth-child(5){padding-right:.1vw}
   .hero .hero-subtitle{left:4%;top:25%;font-size:2.3vw}
 }
 </style></head><body><div class="intro-curtain" aria-hidden="true"><div class="half left"></div><div class="half right"></div><div class="intro-word">A A D H Y A</div></div>
