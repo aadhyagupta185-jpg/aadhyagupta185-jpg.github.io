@@ -368,4 +368,36 @@ const image=n=>'assets/page-'+String(n).padStart(2,'0')+'.webp';const grid=docum
 collections.forEach((p,i)=>{const b=document.createElement('button');b.type='button';b.className='card reveal';b.setAttribute('aria-label','View '+p.title+' collection');b.innerHTML=`<span class="card-media"><img src="${image(p.cover)}" alt="${p.title} collection preview" loading="lazy"></span><div class="card-meta"><span class="card-index" aria-hidden="true">${p.number}</span><span class="card-kind">${p.kind}</span><h3>${p.title}</h3><p>${p.description}</p><span class="card-cta">View collection</span></div>`;b.addEventListener('click',()=>openViewer(i));grid.appendChild(b)});
 const viewer=document.getElementById('viewer'),body=document.getElementById('viewerBody');let active=-1,lastCard=null;function showProject(i){if(i<0||i>=collections.length)return;active=i;const p=collections[i];document.getElementById('viewerTitle').textContent=p.title;document.getElementById('viewerKind').textContent=p.kind;document.getElementById('viewerCounter').textContent=p.number+' / 06';document.getElementById('prevProject').disabled=i===0;document.getElementById('nextProject').disabled=i===collections.length-1;const root=document.getElementById('viewerPages');root.replaceChildren();p.pages.forEach((page,j)=>{const fig=document.createElement('figure'),img=document.createElement('img');img.src=image(page);img.alt=p.title+' — portfolio page '+page;img.loading=j<2?'eager':'lazy';img.decoding='async';fig.append(img);root.append(fig)});body.scrollTop=0;history.replaceState(null,'','#project-'+p.number)}function openViewer(i){lastCard=document.activeElement;viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');document.body.classList.add('lock');showProject(i);document.getElementById('closeViewer').focus()}function closeViewer(){viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');document.body.classList.remove('lock');history.replaceState(null,'','#projects');if(lastCard&&lastCard.focus)lastCard.focus()};document.getElementById('closeViewer').onclick=closeViewer;document.getElementById('prevProject').onclick=()=>showProject(active-1);document.getElementById('nextProject').onclick=()=>showProject(active+1);document.addEventListener('keydown',e=>{if(!viewer.classList.contains('open'))return;if(e.key==='Escape')closeViewer();if(e.key==='ArrowLeft')showProject(active-1);if(e.key==='ArrowRight')showProject(active+1)});
 let y=scrollY;window.addEventListener('scroll',()=>{let n=scrollY;document.getElementById('nav').classList.toggle('show',n>250&&n<y-3);y=n},{passive:true});if('IntersectionObserver'in window){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.09});document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));const match=location.hash.match(/^#project-(0[1-6])$/);if(match)openViewer(parseInt(match[1],10)-1);
+
+/* Return-to-top interaction: replay the existing staggered bounce once whenever
+   a visitor comes back to the cover from the sections below it. */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const hero=document.querySelector('.hero');
+  const letters=Array.from(document.querySelectorAll('.hero-label .hero-letter'));
+  if(!hero||letters.length!==9)return;
+  let armed=false;
+  let lastY=window.scrollY;
+  let scheduled=false;
+  function replayBounce(){
+    letters.forEach(el=>{el.style.animation='none';});
+    void hero.offsetWidth;
+    letters.forEach(el=>{el.style.animation='';});
+  }
+  function check(){
+    const now=window.scrollY;
+    const height=hero.offsetHeight||window.innerHeight;
+    if(now>height*.9)armed=true;
+    if(armed&&now<height*.67&&now<lastY){
+      armed=false;
+      if(document.body.classList.contains('entry-ready'))replayBounce();
+    }
+    lastY=now;
+    scheduled=false;
+  }
+  window.addEventListener('scroll',()=>{
+    if(!scheduled){scheduled=true;requestAnimationFrame(check);}
+  },{passive:true});
+  if(window.scrollY>(hero.offsetHeight||window.innerHeight)*.9)armed=true;
+})();
 </script></body></html>
