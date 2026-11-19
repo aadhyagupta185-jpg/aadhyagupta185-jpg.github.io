@@ -56,25 +56,64 @@
 @media(max-width:560px){.card-meta{grid-template-columns:53px minmax(0,1fr);gap:12px;padding-top:18px}
 .card-index{font-size:36px}.card h3{font-size:34px}.card p{font-size:13px}
 .card-media{aspect-ratio:2.48/1}}
-/* The seam of PORT | FOLIO has balanced breathing room and no obscured F */
-.hero-label{left:0;right:0;display:grid;grid-template-columns:1fr 1fr;gap:0;
-  justify-content:unset;align-items:center;letter-spacing:.055em;font-size:clamp(42px,8vw,145px);
-  font-weight:400;line-height:1.08}
-.hero-label span{display:block;min-width:0;white-space:nowrap}
-.hero-label span:first-child{text-align:right;padding-right:clamp(22px,3vw,56px)}
-.hero-label span:last-child{text-align:left;padding-left:clamp(22px,3vw,56px)}
+/* Portfolio title — nine equal advance-width letter cells.
+   The exact boundary between T and F is anchored at the 50% colour seam.
+   No group may overflow its own half of the hero. */
+.hero-label{
+  position:absolute;z-index:3;top:9%;left:50%;right:auto;
+  width:min(76vw,1400px);
+  display:grid;grid-template-columns:repeat(9,minmax(0,1fr));
+  align-items:center;justify-content:initial;
+  margin:0;
+  font-family:'Spectral SC',Georgia,serif;
+  font-size:clamp(24px,6.65vw,123px);
+  font-weight:400;line-height:1.18;letter-spacing:0;
+  white-space:nowrap;
+  /* 4 cells to left, 5 to right of the centre seam */
+  transform:translateX(-44.444444%);
+}
+.hero-label .hero-letter{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;min-width:0;padding:0;text-align:center;
+  font:inherit;letter-spacing:0;
+  opacity:0;
+}
+.hero-label .on-wine{color:var(--paper)}
+.hero-label .on-paper{color:var(--burgundy)}
+@keyframes portfolio-letter-drop{
+  0%{opacity:0;transform:translateY(-1.25em)}
+  57%{opacity:1;transform:translateY(.095em)}
+  76%{opacity:1;transform:translateY(-.045em)}
+  100%{opacity:1;transform:translateY(0)}
+}
+body.entry-ready .hero-label .hero-letter{
+  animation:portfolio-letter-drop .72s cubic-bezier(.2,.72,.24,1) both;
+  animation-delay:calc(.4s + var(--order)*.115s);
+}
+/* Parent reveal must not double-move the title or clip letter landings. */
+.hero-label,body.entry-ready .hero-label{
+  opacity:1;filter:none;
+  transform:translateX(-44.444444%);
+  transition:none;
+}
 .hero-year{font-family:'DM Sans',sans-serif;font-weight:400;font-variant-numeric:lining-nums tabular-nums;
   font-feature-settings:"lnum" 1,"tnum" 1;font-size:clamp(20px,2vw,28px);
   line-height:1;letter-spacing:.12em}
-@media(max-width:560px){.hero-label{font-size:8vw;letter-spacing:.015em;top:13%}
-.hero-label span:first-child{padding-right:12px}.hero-label span:last-child{padding-left:12px}
-.hero-year{font-size:18px;letter-spacing:.09em}}
+@media(max-width:650px){
+  .hero-label{top:15%;width:83vw;font-size:7.15vw;line-height:1.2}
+  .hero-year{font-size:18px;letter-spacing:.09em}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-label .hero-letter,body.entry-ready .hero-label .hero-letter{
+    animation:none!important;opacity:1!important;transform:none!important
+  }
+}
 @media(max-width:850px){.intro{grid-template-columns:1fr;gap:12px}.about-portrait{width:260px}.hero{min-height:600px}}
 @media(max-width:560px){.hero{min-height:570px}.hero-portrait{left:27%;width:47%;top:30%;height:68%}.about-portrait{width:min(75vw,280px)}.intro-curtain .intro-word{font-size:8vw}}
 @media(prefers-reduced-motion:reduce){.intro-curtain{display:none!important}.hero-label,.hero-portrait,.hero-name,.hero-subtitle,.hero-year{opacity:1!important;filter:none!important;transform:none!important}}
 </style></head><body><div class="intro-curtain" aria-hidden="true"><div class="half left"></div><div class="half right"></div><div class="intro-word">A A D H Y A</div></div>
 <nav class="topnav" id="nav"><div class="navinner"><a class="brand" href="#top">Aadhya Gupta</a><div class="navlinks"><a href="#about">About</a><a href="#projects">Collections</a><a href="#contact">Contact</a></div></div></nav>
-<section class="hero" id="top" aria-label="Portfolio cover"><div class="hero-label"><span>PORT</span><span>FOLIO</span></div><div class="hero-subtitle">Textile Design</div><div class="hero-portrait"><img src="images_web/cover-portrait.png" alt="Aadhya Gupta" fetchpriority="high"></div><div class="hero-name first">Aadhya</div><div class="hero-name last">Gupta</div><div class="hero-year">2026</div><span class="scroll-hint">Scroll to explore ↓</span></section>
+<section class="hero" id="top" aria-label="Portfolio cover"><h1 class="hero-label" aria-label="PORTFOLIO"><span class="hero-letter on-wine" style="--order:0" aria-hidden="true">P</span><span class="hero-letter on-wine" style="--order:1" aria-hidden="true">O</span><span class="hero-letter on-wine" style="--order:2" aria-hidden="true">R</span><span class="hero-letter on-wine" style="--order:3" aria-hidden="true">T</span><span class="hero-letter on-paper" style="--order:4" aria-hidden="true">F</span><span class="hero-letter on-paper" style="--order:5" aria-hidden="true">O</span><span class="hero-letter on-paper" style="--order:6" aria-hidden="true">L</span><span class="hero-letter on-paper" style="--order:7" aria-hidden="true">I</span><span class="hero-letter on-paper" style="--order:8" aria-hidden="true">O</span></h1><div class="hero-subtitle">Textile Design</div><div class="hero-portrait"><img src="images_web/cover-portrait.png" alt="Aadhya Gupta" fetchpriority="high"></div><div class="hero-name first">Aadhya</div><div class="hero-name last">Gupta</div><div class="hero-year">2026</div><span class="scroll-hint">Scroll to explore ↓</span></section>
 <section class="intro" id="about"><div class="intro-identity"><div class="about-portrait reveal"><img src="images_web/slide-about/portrait.png" alt="Portrait illustration of Aadhya Gupta" loading="lazy"><span class="portrait-caption">Aadhya / Textile Designer</span></div><div class="eyebrow reveal">A little about me / 2026</div><h2 class="reveal">Made of <em>stories</em><br>& textures.</h2></div><div><p class="intro-copy reveal">I’m Aadhya, and I think I see the world in textures before I see it in words — a handwoven scarf on a stranger, the way light falls across a crumpled bedsheet, the accidental gradient on a chai-stained napkin. Design, for me, is really just a way of paying attention.</p><p class="intro-copy reveal">I believe beauty is a form of attention, and that the best designs have a little wildness stitched into them.</p><div class="details reveal"><div><h3>Practice</h3><p>Textile & print development<br>Surface techniques & embellishment<br>Garment design & illustration<br>Creative storytelling</p><h3 style="margin-top:25px">Tools</h3><p>Illustrator · Photoshop · InDesign · Lightroom · Procreate · Canva · Figma · Penelope CAD</p></div><div><h3>Experience</h3><p>Print Design Intern — Aditya Birla Grasim, Jun–Jul 2026<br>Graphic Design Intern — Kairosity, Oct–Dec 2025<br>Undergraduate craft research — NIFT</p><h3 style="margin-top:25px">Education</h3><p>National Institute of Fashion Technology<br>B.Des Textile Design, 2023–2027</p></div></div></div></section>
 <section class="work" id="projects"><div class="work-head"><div><div class="eyebrow reveal">Selected work / 01—06</div><h2 class="sectiontitle reveal">The <em>collections.</em></h2></div><p>Six projects in textile & surface design</p></div><div class="grid" id="projectGrid"></div></section>
 <footer class="contact" id="contact"><div class="eyebrow" style="color:#efc8c0">Stay in touch</div><h2>Let's <em>talk</em> textiles.</h2><p>Open to internships, collaborations and conversations about print, pattern and making beautiful things.</p><a href="mailto:aadhya.gupta@nift.ac.in">Email me</a><a href="https://github.com/aadhyagupta185-jpg" target="_blank" rel="noopener noreferrer">GitHub</a><div class="footnote">© 2026 AADHYA GUPTA · TEXTILE DESIGN</div></footer>
