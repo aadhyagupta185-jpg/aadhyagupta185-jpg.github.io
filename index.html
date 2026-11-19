@@ -111,6 +111,93 @@ body.entry-ready .hero-label .hero-letter{
 @media(max-width:850px){.intro{grid-template-columns:1fr;gap:12px}.about-portrait{width:260px}.hero{min-height:600px}}
 @media(max-width:560px){.hero{min-height:570px}.hero-portrait{left:27%;width:47%;top:30%;height:68%}.about-portrait{width:min(75vw,280px)}.intro-curtain .intro-word{font-size:8vw}}
 @media(prefers-reduced-motion:reduce){.intro-curtain{display:none!important}.hero-label,.hero-portrait,.hero-name,.hero-subtitle,.hero-year{opacity:1!important;filter:none!important;transform:none!important}}
+
+/* Reference-matched portfolio cover — Nov 20 supplied composition.
+   Overrides the older flex title rule so all nine letters stay on one line. */
+.hero{
+  width:100%;
+  height:40.85vw;
+  min-height:0;
+  max-height:none;
+  aspect-ratio:1842 / 752;
+  display:block;
+  background:linear-gradient(to right,#700807 0 50%,#fff 50% 100%);
+  overflow:hidden;
+  position:relative;
+}
+.hero .hero-label,body.entry-ready .hero .hero-label{
+  position:absolute;
+  left:50%;right:auto;top:5.3%;
+  width:78.5%;
+  display:grid;
+  grid-template-columns:repeat(9,minmax(0,1fr));
+  align-items:center;
+  justify-content:initial;
+  margin:0;padding:0;
+  font-family:'Spectral SC',Georgia,serif;
+  font-size:8.25vw;
+  font-weight:400;line-height:1.2;
+  letter-spacing:0;
+  transform:translateX(-44.444444%);
+  opacity:1;filter:none;
+  z-index:4;
+}
+.hero .hero-letter{
+  display:flex;
+  justify-content:center;align-items:center;
+  width:100%;height:auto;min-width:0;
+  font:inherit;line-height:inherit;
+  text-align:center;white-space:nowrap;
+}
+.hero .on-wine{color:#fff}
+.hero .on-paper{color:#700807}
+.hero .hero-subtitle{
+  position:absolute;left:14.15%;top:25.5%;
+  font-family:'DM Sans',sans-serif;
+  font-size:1.9vw;font-weight:300;
+  line-height:1.15;letter-spacing:.012em;
+  color:#fff;margin:0;
+}
+.hero .hero-portrait{
+  display:block;position:absolute;
+  top:25.7%;left:39.15%;width:17.5%;height:74.3%;
+  overflow:visible;mix-blend-mode:normal;z-index:2;
+}
+.hero .hero-portrait img{
+  display:block;width:100%;height:100%;
+  object-fit:contain;object-position:center bottom;
+}
+.hero .hero-name{
+  position:absolute;z-index:3;
+  font-family:'DM Sans',sans-serif;
+  font-size:5.65vw;font-weight:300;
+  letter-spacing:-.055em;line-height:1.1;
+  white-space:nowrap;
+}
+.hero .hero-name.first{left:22.75%;top:49.4%;color:#fff}
+.hero .hero-name.last{left:54.9%;top:66.4%;color:#700807}
+.hero .hero-year{
+  position:absolute;right:16.9%;bottom:3.9%;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:2.25vw;font-weight:300;
+  letter-spacing:.01em;line-height:1;
+  font-variant-numeric:lining-nums tabular-nums;
+  color:#700807;
+}
+.hero .scroll-hint{display:none}
+@media(min-width:2200px){
+  .hero{height:40.85vw}
+}
+@media(max-width:700px){
+  .hero{height:118vw;min-height:0;aspect-ratio:auto}
+  .hero .hero-label,body.entry-ready .hero .hero-label{top:10%;font-size:8.3vw;width:85%}
+  .hero .hero-subtitle{top:27%;left:12%;font-size:3.2vw}
+  .hero .hero-portrait{left:33%;top:34%;width:38%;height:66%}
+  .hero .hero-name{font-size:8vw;letter-spacing:-.04em}
+  .hero .hero-name.first{top:57%;left:6%}
+  .hero .hero-name.last{top:74%;left:63%}
+  .hero .hero-year{font-size:4.1vw;bottom:5%;right:9%}
+}
 </style></head><body><div class="intro-curtain" aria-hidden="true"><div class="half left"></div><div class="half right"></div><div class="intro-word">A A D H Y A</div></div>
 <nav class="topnav" id="nav"><div class="navinner"><a class="brand" href="#top">Aadhya Gupta</a><div class="navlinks"><a href="#about">About</a><a href="#projects">Collections</a><a href="#contact">Contact</a></div></div></nav>
 <section class="hero" id="top" aria-label="Portfolio cover"><h1 class="hero-label" aria-label="PORTFOLIO"><span class="hero-letter on-wine" style="--order:0" aria-hidden="true">P</span><span class="hero-letter on-wine" style="--order:1" aria-hidden="true">O</span><span class="hero-letter on-wine" style="--order:2" aria-hidden="true">R</span><span class="hero-letter on-wine" style="--order:3" aria-hidden="true">T</span><span class="hero-letter on-paper" style="--order:4" aria-hidden="true">F</span><span class="hero-letter on-paper" style="--order:5" aria-hidden="true">O</span><span class="hero-letter on-paper" style="--order:6" aria-hidden="true">L</span><span class="hero-letter on-paper" style="--order:7" aria-hidden="true">I</span><span class="hero-letter on-paper" style="--order:8" aria-hidden="true">O</span></h1><div class="hero-subtitle">Textile Design</div><div class="hero-portrait"><img src="images_web/cover-portrait.png" alt="Aadhya Gupta" fetchpriority="high"></div><div class="hero-name first">Aadhya</div><div class="hero-name last">Gupta</div><div class="hero-year">2026</div><span class="scroll-hint">Scroll to explore ↓</span></section>
