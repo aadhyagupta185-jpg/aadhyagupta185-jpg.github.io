@@ -21,23 +21,52 @@
 .card:hover .card-media img,.card:focus-visible .card-media img{transform:scale(1.065);filter:saturate(1.06)}
 .card-media:after{content:'View project ↗';position:absolute;bottom:0;left:0;right:0;padding:25px 18px 13px;background:linear-gradient(transparent,rgba(19,9,9,.57));color:white;letter-spacing:.16em;text-transform:uppercase;font-size:10px;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s}
 .card:hover .card-media:after,.card:focus-visible .card-media:after{opacity:1;transform:none}
-/* composition focuses on prints rather than blank margins in portfolio pages */
-.card:nth-child(1) .card-media img{object-position:32% center}
-.card:nth-child(2) .card-media img{object-position:79% center}
-.card:nth-child(3) .card-media img{object-position:53% center}
-.card:nth-child(4) .card-media img{object-position:17% center}
-.card:nth-child(5) .card-media img{object-position:12% center}
-.card:nth-child(6) .card-media img{object-position:10% center}
-.intro-curtain{position:fixed;inset:0;z-index:110;pointer-events:none;display:flex}
-.intro-curtain .half{width:50%;height:100%;transform:translateY(0);transition:transform 1s cubic-bezier(.76,0,.24,1)}
-.intro-curtain .half.left{background:#670707}.intro-curtain .half.right{background:#fbfaf7}
-.intro-curtain .intro-word{position:absolute;top:48%;left:50%;transform:translate(-50%,-50%);font-family:'Spectral SC',serif;font-size:clamp(36px,8vw,130px);letter-spacing:.22em;white-space:nowrap;color:#d9bdb7;mix-blend-mode:difference;transition:opacity .45s ease,transform .8s ease}
-body.entry-ready .intro-curtain .half.left{transform:translateY(-102%)}
-body.entry-ready .intro-curtain .half.right{transform:translateY(102%)}
-body.entry-ready .intro-curtain .intro-word{opacity:0;transform:translate(-50%,-70%)}
-.hero-label,.hero-portrait,.hero-name,.hero-subtitle,.hero-year{opacity:0;filter:blur(8px);transform:translateY(18px);transition:opacity 1s ease,filter 1.2s ease,transform 1s ease}
-body.entry-ready .hero-label,body.entry-ready .hero-portrait,body.entry-ready .hero-name,body.entry-ready .hero-subtitle,body.entry-ready .hero-year{opacity:1;filter:blur(0);transform:translateY(0);transition-delay:.42s}
-body.entry-ready .hero-name.first{transition-delay:.62s}body.entry-ready .hero-name.last{transition-delay:.78s}
+/* Artwork presentation: preserve the ENTIRE composition and consistent whitespace.
+   All six cards use one common centered stage; no per-card crop, pan or scale. */
+.card-media{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  aspect-ratio: 1.12;
+  overflow:hidden;
+  padding:clamp(14px,2vw,26px);
+  background:#f5f1ec;
+  border:1px solid #e5dbd3;
+}
+.card-media img,
+.card:nth-child(1) .card-media img,
+.card:nth-child(2) .card-media img,
+.card:nth-child(3) .card-media img,
+.card:nth-child(4) .card-media img,
+.card:nth-child(5) .card-media img,
+.card:nth-child(6) .card-media img{
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  object-position:center center;
+  display:block;
+  transform:none;
+  filter:none;
+}
+.card:hover .card-media img,
+.card:focus-visible .card-media img,
+.card:hover img,
+.card:focus-visible img{
+  transform:none;
+  filter:none;
+}
+.card-media:after{
+  bottom:clamp(14px,2vw,26px);
+  left:clamp(14px,2vw,26px);
+  right:clamp(14px,2vw,26px);
+}
+.card-number{top:clamp(20px,2.6vw,32px);left:clamp(20px,2.6vw,32px);z-index:2}
+@media(max-width:560px){
+  .card-media{padding:16px}
+  .card-number{top:22px;left:22px}
+}
 @media(max-width:850px){.intro{grid-template-columns:1fr;gap:12px}.about-portrait{width:260px}.hero{min-height:600px}}
 @media(max-width:560px){.hero{min-height:570px}.hero-portrait{left:27%;width:47%;top:30%;height:68%}.about-portrait{width:min(75vw,280px)}.intro-curtain .intro-word{font-size:8vw}}
 @media(prefers-reduced-motion:reduce){.intro-curtain{display:none!important}.hero-label,.hero-portrait,.hero-name,.hero-subtitle,.hero-year{opacity:1!important;filter:none!important;transform:none!important}}
