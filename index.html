@@ -21,52 +21,54 @@
 .card:hover .card-media img,.card:focus-visible .card-media img{transform:scale(1.065);filter:saturate(1.06)}
 .card-media:after{content:'View project ↗';position:absolute;bottom:0;left:0;right:0;padding:25px 18px 13px;background:linear-gradient(transparent,rgba(19,9,9,.57));color:white;letter-spacing:.16em;text-transform:uppercase;font-size:10px;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s}
 .card:hover .card-media:after,.card:focus-visible .card-media:after{opacity:1;transform:none}
-/* Artwork presentation: preserve the ENTIRE composition and consistent whitespace.
-   All six cards use one common centered stage; no per-card crop, pan or scale. */
+/* 2026 editorial collection grid: image-first, landscape, proportionate */
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:72px 34px;align-items:start}
+.card{display:block;width:100%;overflow:visible;position:relative}
 .card-media{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  aspect-ratio: 1.12;
-  overflow:hidden;
-  padding:clamp(14px,2vw,26px);
-  background:#f5f1ec;
-  border:1px solid #e5dbd3;
+  display:block;position:relative;aspect-ratio:2.48/1;padding:0;
+  overflow:hidden;background:#eee7e0;border:none;
 }
 .card-media img,
-.card:nth-child(1) .card-media img,
-.card:nth-child(2) .card-media img,
-.card:nth-child(3) .card-media img,
-.card:nth-child(4) .card-media img,
-.card:nth-child(5) .card-media img,
-.card:nth-child(6) .card-media img{
-  width:100%;
-  height:100%;
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;
-  object-position:center center;
-  display:block;
-  transform:none;
-  filter:none;
+.card:nth-child(1) .card-media img,.card:nth-child(2) .card-media img,
+.card:nth-child(3) .card-media img,.card:nth-child(4) .card-media img,
+.card:nth-child(5) .card-media img,.card:nth-child(6) .card-media img{
+  display:block;width:100%;height:100%;max-width:none;max-height:none;
+  object-fit:cover;object-position:center center;
+  transform:none;filter:none;transition:filter .55s ease;
 }
-.card:hover .card-media img,
-.card:focus-visible .card-media img,
-.card:hover img,
-.card:focus-visible img{
-  transform:none;
-  filter:none;
-}
-.card-media:after{
-  bottom:clamp(14px,2vw,26px);
-  left:clamp(14px,2vw,26px);
-  right:clamp(14px,2vw,26px);
-}
-.card-number{top:clamp(20px,2.6vw,32px);left:clamp(20px,2.6vw,32px);z-index:2}
-@media(max-width:560px){
-  .card-media{padding:16px}
-  .card-number{top:22px;left:22px}
-}
+.card:hover .card-media img,.card:focus-visible .card-media img,
+.card:hover img,.card:focus-visible img{transform:none;filter:brightness(.96)}
+.card-media:after{content:none!important}
+.card-number{display:none}
+.card-meta{position:relative;display:grid;grid-template-columns:74px minmax(0,1fr);
+  column-gap:19px;align-items:start;padding:24px 0 0;border-top:1px solid #c9bcb6;margin-top:14px}
+.card-index{grid-row:1/5;font-family:'Spectral SC',serif;font-variant-numeric:lining-nums tabular-nums;
+  font-size:clamp(36px,3.5vw,56px);font-weight:400;color:var(--burgundy);
+  line-height:1;letter-spacing:-.035em}
+.card-kind{grid-column:2;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--burgundy);margin:1px 0 8px}
+.card h3{grid-column:2;font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:clamp(32px,3.4vw,55px);margin:0 0 8px;line-height:1.05;letter-spacing:-.025em}
+.card p{grid-column:2;max-width:56ch;font-size:14px;line-height:1.65;margin:0 0 13px;color:#655a56}
+.card-cta{grid-column:2;border-bottom:1px solid var(--burgundy);width:max-content;
+  margin:3px 0 0;padding-bottom:5px}
+.card:focus-visible{outline:2px solid var(--burgundy);outline-offset:8px}
+@media(max-width:850px){.grid{grid-template-columns:1fr;gap:58px}.card-media{aspect-ratio:2.48/1}}
+@media(max-width:560px){.card-meta{grid-template-columns:53px minmax(0,1fr);gap:12px;padding-top:18px}
+.card-index{font-size:36px}.card h3{font-size:34px}.card p{font-size:13px}
+.card-media{aspect-ratio:2.48/1}}
+/* The seam of PORT | FOLIO has balanced breathing room and no obscured F */
+.hero-label{left:0;right:0;display:grid;grid-template-columns:1fr 1fr;gap:0;
+  justify-content:unset;align-items:center;letter-spacing:.055em;font-size:clamp(42px,8vw,145px);
+  font-weight:400;line-height:1.08}
+.hero-label span{display:block;min-width:0;white-space:nowrap}
+.hero-label span:first-child{text-align:right;padding-right:clamp(22px,3vw,56px)}
+.hero-label span:last-child{text-align:left;padding-left:clamp(22px,3vw,56px)}
+.hero-year{font-family:'DM Sans',sans-serif;font-weight:400;font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:"lnum" 1,"tnum" 1;font-size:clamp(20px,2vw,28px);
+  line-height:1;letter-spacing:.12em}
+@media(max-width:560px){.hero-label{font-size:8vw;letter-spacing:.015em;top:13%}
+.hero-label span:first-child{padding-right:12px}.hero-label span:last-child{padding-left:12px}
+.hero-year{font-size:18px;letter-spacing:.09em}}
 @media(max-width:850px){.intro{grid-template-columns:1fr;gap:12px}.about-portrait{width:260px}.hero{min-height:600px}}
 @media(max-width:560px){.hero{min-height:570px}.hero-portrait{left:27%;width:47%;top:30%;height:68%}.about-portrait{width:min(75vw,280px)}.intro-curtain .intro-word{font-size:8vw}}
 @media(prefers-reduced-motion:reduce){.intro-curtain{display:none!important}.hero-label,.hero-portrait,.hero-name,.hero-subtitle,.hero-year{opacity:1!important;filter:none!important;transform:none!important}}
@@ -81,15 +83,15 @@
 (function(){const enter=()=>requestAnimationFrame(()=>document.body.classList.add('entry-ready'));const portrait=document.querySelector('.hero-portrait img');if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){enter();return;}if(portrait&&!portrait.complete){portrait.addEventListener('load',enter,{once:true});portrait.addEventListener('error',enter,{once:true});setTimeout(enter,1100);}else{setTimeout(enter,180);}})();
 
 const collections=[
-{number:'01',title:'Spidya-Verse',kind:'Print Design',description:'A childhood love of Spider-Man reimagined through bold red and black streetwear, expressive graphics and surface experiments.',cover:9,pages:[4,5,6,7,8,9,10]},
-{number:'02',title:'Noor-e-Mahal',kind:'Print Development',description:'An ode to the architecture of light: gilded arches, carved screens and the lasting beauty of Mughal-inspired motifs.',cover:14,pages:[11,12,13,14,15]},
-{number:'03',title:'Reimagined Heirloom',kind:'Garment Design',description:'Traditional Indian textiles meet a contemporary corset top and mini skirt — heritage recut for a new silhouette.',cover:20,pages:[16,17,18,19,20]},
-{number:'04',title:'The Cozy Corner',kind:'Surface Design',description:'The inviting warmth of vintage cafés translated into macramé, crochet, embroidery and tactile home accessories.',cover:25,pages:[21,22,23,24,25]},
-{number:'05',title:'Placement',kind:'Print Development · Grasim',description:'Placement prints and technical specifications developed for contemporary garments during a Grasim design internship.',cover:27,pages:[26,27,28,29,30]},
-{number:'06',title:'Sugarpie',kind:'Print Development',description:'Playful babywear prints filled with strawberries, sweets, colour and small moments of childhood joy.',cover:33,pages:[31,32,33,34,35,36,37]}
+{number:'01',title:'Spidya-Verse',kind:'Print Design',description:'Inspired by the Spider-Verse, childhood memories become bold red-and-black streetwear through expressive prints and surface experimentation.',cover:9,pages:[4,5,6,7,8,9,10]},
+{number:'02',title:'Noor-e-Mahal',kind:'Print Development',description:'An ode to the architecture of light — old palaces, jali screens, gilded arches and the beauty that only time can build.',cover:14,pages:[11,12,13,14,15]},
+{number:'03',title:'Reimagined Heirloom',kind:'Garment Design',description:'Heritage-inspired fabrics, ornamental borders and metallic textures meet a modern sweetheart-neck corset and fitted mini skirt.',cover:20,pages:[16,17,18,19,20]},
+{number:'04',title:'The Cozy Corner',kind:'Surface Design',description:'Vintage café warmth in earthy brown, cream and mustard — macramé, crochet, embroidery and handcrafted textures.',cover:25,pages:[21,22,23,24,25]},
+{number:'05',title:'Placement',kind:'Print Development · Grasim',description:'Print development at Grasim: engineered placement motifs, contemporary silhouettes and production-ready technical detailing.',cover:27,pages:[26,27,28,29,30]},
+{number:'06',title:'Sugarpie',kind:'Print Development',description:'A celebration of the sweetest years: strawberries, ice creams, playful motifs and little memories in the making.',cover:33,pages:[31,32,33,34,35,36,37]}
 ];
 const image=n=>'assets/page-'+String(n).padStart(2,'0')+'.webp';const grid=document.getElementById('projectGrid');
-collections.forEach((p,i)=>{const b=document.createElement('button');b.type='button';b.className='card reveal';b.setAttribute('aria-label','View '+p.title+' collection');b.innerHTML=`<span class="card-media"><img src="${image(p.cover)}" alt="${p.title} collection preview" loading="lazy"><span class="card-number">${p.number}</span></span><div class="card-meta"><span class="card-kind">${p.kind}</span><h3>${p.title}</h3><p>${p.description}</p><span class="card-cta">View collection</span></div>`;b.addEventListener('click',()=>openViewer(i));grid.appendChild(b)});
+collections.forEach((p,i)=>{const b=document.createElement('button');b.type='button';b.className='card reveal';b.setAttribute('aria-label','View '+p.title+' collection');b.innerHTML=`<span class="card-media"><img src="${image(p.cover)}" alt="${p.title} collection preview" loading="lazy"></span><div class="card-meta"><span class="card-index" aria-hidden="true">${p.number}</span><span class="card-kind">${p.kind}</span><h3>${p.title}</h3><p>${p.description}</p><span class="card-cta">View collection</span></div>`;b.addEventListener('click',()=>openViewer(i));grid.appendChild(b)});
 const viewer=document.getElementById('viewer'),body=document.getElementById('viewerBody');let active=-1,lastCard=null;function showProject(i){if(i<0||i>=collections.length)return;active=i;const p=collections[i];document.getElementById('viewerTitle').textContent=p.title;document.getElementById('viewerKind').textContent=p.kind;document.getElementById('viewerCounter').textContent=p.number+' / 06';document.getElementById('prevProject').disabled=i===0;document.getElementById('nextProject').disabled=i===collections.length-1;const root=document.getElementById('viewerPages');root.replaceChildren();p.pages.forEach((page,j)=>{const fig=document.createElement('figure'),img=document.createElement('img');img.src=image(page);img.alt=p.title+' — portfolio page '+page;img.loading=j<2?'eager':'lazy';img.decoding='async';fig.append(img);root.append(fig)});body.scrollTop=0;history.replaceState(null,'','#project-'+p.number)}function openViewer(i){lastCard=document.activeElement;viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');document.body.classList.add('lock');showProject(i);document.getElementById('closeViewer').focus()}function closeViewer(){viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');document.body.classList.remove('lock');history.replaceState(null,'','#projects');if(lastCard&&lastCard.focus)lastCard.focus()};document.getElementById('closeViewer').onclick=closeViewer;document.getElementById('prevProject').onclick=()=>showProject(active-1);document.getElementById('nextProject').onclick=()=>showProject(active+1);document.addEventListener('keydown',e=>{if(!viewer.classList.contains('open'))return;if(e.key==='Escape')closeViewer();if(e.key==='ArrowLeft')showProject(active-1);if(e.key==='ArrowRight')showProject(active+1)});
 let y=scrollY;window.addEventListener('scroll',()=>{let n=scrollY;document.getElementById('nav').classList.toggle('show',n>250&&n<y-3);y=n},{passive:true});if('IntersectionObserver'in window){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.09});document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));const match=location.hash.match(/^#project-(0[1-6])$/);if(match)openViewer(parseInt(match[1],10)-1);
 </script></body></html>
